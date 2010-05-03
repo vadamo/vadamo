@@ -38,11 +38,15 @@ a:visited {
   color: #069;
 }
 
+.
+.
+.
 /* Navigation */
 
 .navigation {
-  float: right;
+  float: right
 }
+
 
 .navigation {
   background-color: white;
@@ -88,6 +92,8 @@ a.signup_button {
   padding: 20px;
 }
 
+/* Round corners */
+
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
@@ -96,6 +102,9 @@ a.signup_button {
 #footer {
   text-align: center;
   margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #footer .navigation {
