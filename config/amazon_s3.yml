@@ -1,0 +1,14 @@
+development:
+  bucket_name: vadamo_development
+  access_key_id: AKIAIF5OLKPQKPYEKTYQ
+  secret_access_key: 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
+
+test:
+  bucket_name: vadamo_test
+  access_key_id: AKIAIF5OLKPQKPYEKTYQ
+  secret_access_key: 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
+
+production:
+  bucket_name: vadamo_production
+  access_key_id: AKIAIF5OLKPQKPYEKTYQ
+  secret_access_key: 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
