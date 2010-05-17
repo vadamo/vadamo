@@ -14,3 +14,8 @@ Factory.define :micropost do |micropost|
   micropost.content "Foo bar"
   micropost.association :user
 end
+
+# Need Size, Content type, filename
+Factory.define :artwork do |artwork|
+  artwork.association :user
+end

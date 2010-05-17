@@ -9,6 +9,7 @@ class MicropostsController < ApplicationController
       redirect_to root_path
     else
       @feed_items = []
+      @artwork_feed_items = [] # this should not be here
       render 'pages/home'
     end
   end

@@ -17,7 +17,7 @@ describe PagesController do
     it "should have the right title" do
       get 'home'
       response.should have_tag("title",
-                               "Ruby on Rails Tutorial Sample App | Home")
+                               "Vadamo.com  |   Online Marketplace for Art | Home")
     end
   end
 
@@ -30,7 +30,7 @@ describe PagesController do
     it "should have the right title" do
       get 'contact'
       response.should have_tag("title",
-                               "Ruby on Rails Tutorial Sample App | Contact")
+                               "Vadamo.com  |   Online Marketplace for Art | Contact")
     end
   end
 
@@ -43,7 +43,7 @@ describe PagesController do
     it "should have the right title" do
       get 'about'
       response.should have_tag("title",
-                               "Ruby on Rails Tutorial Sample App | About")
+                               "Vadamo.com  |   Online Marketplace for Art | About")
     end
   end
 
@@ -56,7 +56,7 @@ describe PagesController do
     it "should have the right title" do
       get 'help'
       response.should have_tag("title",
-                               "Ruby on Rails Tutorial Sample App | Help")
+                               "Vadamo.com  |   Online Marketplace for Art | Help")
     end
   end
 

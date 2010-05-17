@@ -226,4 +226,48 @@ describe User do
       end
     end
   end
+
+  describe "artwork associations" do
+
+    before(:each) do
+      @user = User.create(@attr)
+      # Need Size, Content type, filename
+      @aw1 = Factory(:artwork, :user => @user, :created_at => 1.day.ago) 
+      @aw2 = Factory(:artwork, :user => @user, :created_at => 1.hour.ago)
+    end
+
+    it "should have a artworks attribute" do
+      @user.should respond_to(:artworks)
+    end
+
+    it "should have the right artworks in the right order" do
+      @user.artworks.should == [@aw2, @aw1]
+    end
+
+    it "should destroy associated artworks" do
+      @user.destroy
+      [@aw1, @aw2].each do |artwork|
+        Artwork.find_by_id(artwork.id).should be_nil
+      end
+    end
+
+    describe "status feed" do
+      
+      it "should have a feed" do
+        @user.should respond_to(:feed)
+      end
+      
+      it "should include the user's artworks" do
+        @user.feed.include?(@aw1).should be_true
+        @user.feed.include?(@aw2).should be_true
+      end
+
+      it "should not include a different user's artworks" do
+        aw3 = Factory(:artwork,
+                      :user => Factory(:user, :email => Factory.next(:email)))
+        @user.feed.include?(aw3).should be_false
+      end
+    end
+  end
+
 end

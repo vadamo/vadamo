@@ -38,6 +38,16 @@ describe UsersController do
       response.should have_tag("span.content", mp1.content)
       response.should have_tag("span.content", mp2.content)
     end
+
+    #fix this
+    it "should show the user's artworks" do
+      aw1 = Factory(:artwork, :user => @user)
+      aw2 = Factory(:artwork, :user => @user)
+      get :show, :id => @user
+      response.should have_tag("span.content", aw1.content)
+      response.should have_tag("span.content", aw1.content)
+    end
+
   end
 
   describe "GET 'new'" do

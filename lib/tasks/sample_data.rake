@@ -26,5 +26,7 @@ namespace :db do
         user.microposts.create!(:content => Faker::Lorem.sentence(5))
       end
     end
+
+    # todo: add fake artwork entries
   end
 end

@@ -1,0 +1,38 @@
+<p>
+  <b>Owner:</b>
+  <%=h @artwork.owner_id %>
+</p>
+
+<p>
+  <b>Filename:</b>
+  <%=h @artwork.filename %>
+</p>
+
+<p>
+  <b>Thumbail:</b>
+  <%=h @artwork.thumbail %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%=h @artwork.size %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%=h @artwork.height %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @artwork.width %>
+</p>
+
+<p>
+  <b>Content type:</b>
+  <%=h @artwork.content_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_artwork_path(@artwork) %> |
+<%= link_to 'Back', artworks_path %>

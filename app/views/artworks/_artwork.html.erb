@@ -1,0 +1,16 @@
+<tr>
+  <td class="artwork">
+    <span class="content">
+      <%= image_tag(artwork.public_filename) %>
+    </span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(artwork.created_at) %> ago.
+    </span>
+  </td>
+  <% if current_user?(artwork.user) %>
+  <td>
+    <%= link_to "delete", artwork, :method => :delete,
+                                     :confirm => "You sure?" %>
+  </td>
+  <% end %>
+</tr>

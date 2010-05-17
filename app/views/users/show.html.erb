@@ -16,6 +16,17 @@
       <strong>Name</strong> <%= h @user.name %><br />
       <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
       <strong>Microposts</strong> <%= @user.microposts.count %>
+      <strong>Artworks</strong> <%= @user.artworks.count %>
+    </td>
+  </tr>
+  <tr>
+    <td class="artwork">
+      <% unless @user.artworks.empty? %>
+        <table class="artworks">
+          <%= render @artworks %>
+        </table>
+        <%= will_paginate @artworks %>
+      <% end %>
     </td>
   </tr>
 </table>

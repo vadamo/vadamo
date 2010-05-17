@@ -1,4 +1,3 @@
-<meta name="google-site-verification" content="JFWVNFVrP8dxUxmspSSUbY2p29JFAK3-URa1g_S4pis" />
 <% if signed_in? %>
   <table class="front">
     <tr>
@@ -9,6 +8,14 @@
       </td>
       <td class="sidebar round">
         <%= render 'pages/user_info' %>
+      </td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td class="main">
+	<h2 class="artwork">Show me what you got</h2>
+	<%= render 'pages/artwork_form' %>
+	<%= render 'pages/artwork_feed' %>
       </td>
     </tr>
   </table>

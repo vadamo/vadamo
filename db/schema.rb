@@ -9,7 +9,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100511024908) do
+ActiveRecord::Schema.define(:version => 20100516044150) do
+
+  create_table "artworks", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "filename"
+    t.string   "thumbail"
+    t.integer  "size"
+    t.integer  "height"
+    t.integer  "width"
+    t.integer  "content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
