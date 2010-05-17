@@ -11,7 +11,7 @@ class CreateArtworks < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :artworks, :user_id
+#    add_index :artworks, :user_id
   end
 
   def self.down
