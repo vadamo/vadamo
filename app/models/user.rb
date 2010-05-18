@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
 
-  has_many :microposts, :dependent => :destroy
+  #has_many :microposts, :dependent => :destroy
   has_many :artworks,   :dependent => :destroy
 
   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -53,10 +53,10 @@ class User < ActiveRecord::Base
     return user if user.has_password?(submitted_password)
   end
 
-  def feed
-    # This is preliminary. See Chapter 12 for the full implementation.
-    Micropost.all(:conditions => ["user_id = ?", id])
-  end
+  #def feed
+  #  # This is preliminary. See Chapter 12 for the full implementation.
+  #  Micropost.all(:conditions => ["user_id = ?", id])
+  #end
 
   def artwork_feed
     Artwork.all(:conditions => ["user_id = ?", id])

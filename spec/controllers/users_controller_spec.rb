@@ -31,13 +31,13 @@ describe UsersController do
       response.should have_tag("h2>img", :class => "gravatar")
     end
 
-    it "should show the user's microposts" do
-      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
-      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
-      get :show, :id => @user
-      response.should have_tag("span.content", mp1.content)
-      response.should have_tag("span.content", mp2.content)
-    end
+#     it "should show the user's microposts" do
+#       mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+#       mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+#       get :show, :id => @user
+#       response.should have_tag("span.content", mp1.content)
+#       response.should have_tag("span.content", mp2.content)
+#     end
 
     #fix this
     it "should show the user's artworks" do
@@ -103,7 +103,7 @@ describe UsersController do
 
       it "should have a welcome message" do
         post :create, :user => @attr
-        flash[:success].should =~ /welcome to the sample app/i
+        flash[:success].should =~ /welcome to vadamo/i
       end
 
       it "should sign the user in" do
