@@ -19,6 +19,10 @@
     <%= f.label :password_confirmation, "Confirmation" %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+  <div class="field">
+    <%= label :secret_code, "Secret code" %><br />
+    <%= text_field :secret_code, "secret_alpha_code"  %><br />
+  </div>
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
