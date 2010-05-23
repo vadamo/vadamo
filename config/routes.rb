@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.help    '/help',    :controller => 'pages', :action => 'help'
   map.signup  '/signup',  :controller => 'users', :action => 'new'
   map.users   '/users',   :controller => 'users', :action => 'show'
+  map.privacy_policy   '/privacy_policy',   :controller => 'pages', :action => 'privacy_policy'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

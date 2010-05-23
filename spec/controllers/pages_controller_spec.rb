@@ -60,4 +60,17 @@ describe PagesController do
     end
   end
 
+  describe "GET 'privacy_policy'" do
+    it "should be successful" do
+      get 'privacy_policy'
+      response.should be_success
+    end
+
+    it "should have the right title" do
+      get 'privacy_policy'
+      response.should have_tag("title",
+                               "Vadamo.com  |   Online Marketplace for Art | Privacy Policy")
+    end
+  end
+
 end

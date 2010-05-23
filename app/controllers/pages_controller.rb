@@ -21,4 +21,7 @@ class PagesController < ApplicationController
     @title  = "Help"
   end
 
+  def privacy_policy
+    @title = "Privacy Policy"
+  end
 end
