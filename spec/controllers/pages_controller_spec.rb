@@ -73,4 +73,17 @@ describe PagesController do
     end
   end
 
+  describe "GET 'terms_of_use'" do
+    it "should be successful" do
+      get 'terms_of_use'
+      response.should be_success
+    end
+
+    it "should have the right title" do
+      get 'terms_of_use'
+      response.should have_tag("title",
+                               "Vadamo.com  |   Online Marketplace for Art | Terms of Use")
+    end
+  end
+
 end

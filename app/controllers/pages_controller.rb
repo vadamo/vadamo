@@ -24,4 +24,8 @@ class PagesController < ApplicationController
   def privacy_policy
     @title = "Privacy Policy"
   end
+
+  def terms_of_use
+    @title = "Terms of Use"
+  end
 end
