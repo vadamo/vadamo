@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100605200743
+# Schema version: 20100606023813
 #
 # Table name: artworks
 #
@@ -33,6 +33,7 @@
 #  ships_from         :string(255)
 #  ships_to           :string(255)
 #  shipping_cost      :integer(2)
+#  name               :string(255)
 #
 
 require 'spec_helper'

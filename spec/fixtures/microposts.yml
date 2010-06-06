@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100605200743
+# Schema version: 20100606023813
 #
 # Table name: microposts
 #

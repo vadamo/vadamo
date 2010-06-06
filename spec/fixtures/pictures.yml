@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100605200743
+# Schema version: 20100606023813
 #
 # Table name: pictures
 #
@@ -8,13 +8,12 @@
 #  artwork_id         :integer
 #  name               :string(255)
 #  description        :string(255)
-#  thumbail           :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
 #  image_file_name    :string(255)
 #  image_content_type :string(255)
 #  image_file_size    :integer
 #  image_updated_at   :datetime
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
