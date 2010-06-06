@@ -1,0 +1,35 @@
+# == Schema Information
+# Schema version: 20100605200743
+#
+# Table name: pictures
+#
+#  id                 :integer         not null, primary key
+#  user_id            :integer
+#  artwork_id         :integer
+#  name               :string(255)
+#  description        :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#  image_file_name    :string(255)
+#  image_content_type :string(255)
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#
+
+
+class Picture < ActiveRecord::Base
+
+  belongs_to :artwork
+
+  has_attached_file :image, 
+                    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                    :storage => :s3, 
+                    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+                    :path => ":class/:id/:style.:extension"
+
+#  validates_as_attachment
+#  validates_presence_of :picture_id
+
+  default_scope :order => 'created_at DESC'
+
+end

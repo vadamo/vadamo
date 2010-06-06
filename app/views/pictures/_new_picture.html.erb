@@ -1,0 +1,11 @@
+<%= error_messages_for :picture %>
+
+<% form_for :picture, @picture,
+:url => pictures_path,
+:html => { :class => "new_picture", :id => "new_picture", :multipart => true } do |form| %>
+    new image<%= form.file_field :image %>
+   <%= form.hidden_field :artwork_id, :value => @picture.artwork_id %>
+   userid<%= form.hidden_field :user_id, :value => @artwork.user_id  %>
+    <p><%= submit_tag 'Create' %></p>
+<% end %>
+

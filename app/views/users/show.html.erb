@@ -2,7 +2,9 @@
   <tr>
     <td class="main">
       <h2>
-        <%= gravatar_for @user %>
+	a1<%= image_tag @user.avatar.url %>
+	a2<%= image_tag @user.avatar.url(:medium) %>
+	a3<%= image_tag @user.avatar.url(:thumb) %>
         <%= h @user.name %>
       </h2>
     </td>

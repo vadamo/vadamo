@@ -1,17 +1,21 @@
 # == Schema Information
-# Schema version: 20100516044150
+# Schema version: 20100605200743
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  remember_token     :string(255)
-#  admin              :boolean
+#  id                  :integer         not null, primary key
+#  name                :string(255)
+#  email               :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  encrypted_password  :string(255)
+#  salt                :string(255)
+#  remember_token      :string(255)
+#  admin               :boolean
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

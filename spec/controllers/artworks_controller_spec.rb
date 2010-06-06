@@ -21,7 +21,7 @@ describe ArtworksController do
 
     before(:each) do
       @user = test_sign_in(Factory(:user))
-      @attr = { :content => "Lorem ipsum" }
+      @attr = { }
       @artwork = Factory(:artwork, @attr.merge(:user => @user))
 
       @user.artworks.stub!(:build).and_return(@artwork)
@@ -67,7 +67,7 @@ describe ArtworksController do
         test_sign_in(wrong_user)
         @artwork = Factory(:artwork, :user => @user)
       end
-
+      
       it "should deny access" do
         @artwork.should_not_receive(:destroy)
         delete :destroy, :id => @artwork

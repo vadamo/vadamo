@@ -1,25 +1,35 @@
 # == Schema Information
-# Schema version: 20100516044150
+# Schema version: 20100605200743
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  remember_token     :string(255)
-#  admin              :boolean
+#  id                  :integer         not null, primary key
+#  name                :string(255)
+#  email               :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  encrypted_password  :string(255)
+#  salt                :string(255)
+#  remember_token      :string(255)
+#  admin               :boolean
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :avatar
 
   #has_many :microposts, :dependent => :destroy
   has_many :artworks,   :dependent => :destroy
+
+  has_attached_file :avatar,
+                    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                    :storage => :s3, 
+                    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+                    :path => ":class/:id/:style.:extension"
 
   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

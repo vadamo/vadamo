@@ -21,10 +21,11 @@ describe "Users" do
       it "should make a new user" do
         lambda do
           visit signup_url
-          fill_in "Name",         :with => "Example User"
-          fill_in "Email",        :with => "user@example.com"
+          fill_in "Name",         :with => "Example User666"
+          fill_in "Email",        :with => "user666@example.com"
           fill_in "Password",     :with => "foobar"
           fill_in "Confirmation", :with => "foobar"
+          fill_in "Secret code",  :with => "alpha732"
           click_button
           response.should render_template('users/show')
           response.should have_tag("div.flash.success")

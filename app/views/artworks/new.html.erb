@@ -3,17 +3,50 @@
 
 <%= error_messages_for :artwork %>
 
-<% form_for(:artwork, :url => artworks_path, 
+<% form_for(:picture, :url => pictures_path, 
                       :html => { :multipart => true }) do |f| -%>
   <p>
-    <label for="artwork">Upload some artwork:</label>
+    <label for="artwork">Upload a picture of the  artwork:</label>
     <%= f.file_field :uploaded_data %>
   </p>
   <p>
-    <%= submit_tag 'Create' %>
+    <!-- percenteq submit_tag 'Create' percent -->
   </p>
 <% end -%>
 
+
+###
+<% unless @artwork_feed_items.empty? %>
+  <table class="artworks">
+    <%= render :partial => 'artwork_feed_item', :collection => @artwork_feed_items %>
+  </table>
+  <%= will_paginate @artwork_feed_items %>
+<% end %>
+###
+
+###<tr>
+  <td class="gravatar">
+    <%= link_to gravatar_for(artwork_feed_item.user), artwork_feed_item.user %>
+  </td>
+  <td class="artwork">
+    <span class="user">
+      <%= link_to h(artwork_feed_item.user.name), artwork_feed_item.user %>
+    </span>
+    <span class="content">
+      <%= image_tag(artwork_feed_item.public_filename) %>
+    <span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(artwork_feed_item.created_at) %> ago.
+    </span>
+  </td>
+  <% if current_user?(artwork_feed_item.user) %>
+  <td>
+    <%= link_to "delete", artwork_feed_item, :method => :delete,
+                                     :confirm => "You sure?" %>
+  </td>
+  <% end %>
+</tr>
+###
 
 <!--
 

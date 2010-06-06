@@ -1,16 +1,16 @@
-<%= error_messages_for :artwork %>
+<h1>New Picture</h1>
 
-New Artwork!
-something something something to create a new artwork
+Name: <%= @picture.name %>
 
+<%= error_messages_for :picture %>
 
 <% form_for(:picture, :url => pictures_path, 
                       :html => { :multipart => true }) do |f| -%>
   <p>
-    <label for="picture">Upload some artwork:</label>
+    <label for="artwork">Upload a picture of the  artwork:</label>
     <%= f.file_field :uploaded_data %>
   </p>
   <p>
     <%= submit_tag 'Create' %>
   </p>
-<% end -%>
+<% end %>

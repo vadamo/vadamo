@@ -1,10 +1,13 @@
 <tr>
   <td class="artwork">
     <span class="content">
-      <%= image_tag(artwork.public_filename) %>
+      <!-- image_tag(artwork.pictures[0]._filename) -->
     </span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(artwork.created_at) %> ago.
+    </span>
+    <span>
+      <%= link_to 'Edit', @artwork %> |
     </span>
   </td>
   <% if current_user?(artwork.user) %>

@@ -1,17 +1,21 @@
 # == Schema Information
-# Schema version: 20100516044150
+# Schema version: 20100605200743
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  remember_token     :string(255)
-#  admin              :boolean
+#  id                  :integer         not null, primary key
+#  name                :string(255)
+#  email               :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  encrypted_password  :string(255)
+#  salt                :string(255)
+#  remember_token      :string(255)
+#  admin               :boolean
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 require 'spec_helper'
@@ -231,9 +235,8 @@ describe User do
 
     before(:each) do
       @user = User.create(@attr)
-      # Need Size, Content type, filename
-      @aw1 = Factory(:artwork, :user => @user, :created_at => 1.day.ago) 
-      @aw2 = Factory(:artwork, :user => @user, :created_at => 1.hour.ago)
+      @aw1 = Factory(:artwork, :user => @user, :created_at => 1.day.ago, :content_type => 'foo', :size => 1.kilobyte, :filename => "test.jpg") 
+      @aw2 = Factory(:artwork, :user => @user, :created_at => 1.hour.ago, :content_type => 'foo', :size => 1.kilobyte, :filename => "test2.jpg") 
     end
 
     it "should have a artworks attribute" do

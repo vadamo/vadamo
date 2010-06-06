@@ -5,7 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-#    @microposts = @user.microposts.paginate(:page => params[:page])
     @artworks = @user.artworks.paginate(:page => params[:page])
     @title = @user.name
   end
@@ -17,14 +16,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if params[:secret_code][:secret_alpha_code] != "alpha732"
-      flash[:failure] = "Vadamo.com is currently in a private beta. Please check back again soon for updates."
+    if params[:secret_code][:Secret_Code] != "alpha732"
+      flash[:error] = "Vadamo.com is currently in a private beta. Please check back again soon for updates."
       @title = "fail code"
       render 'new'
     else
       if @user.save
         sign_in @user
-        flash[:success] = "Welcome to the Sample App!"
+        flash[:success] = "Welcome to Vadamo!"
         redirect_to @user
       else
         @title = "Sign up"
