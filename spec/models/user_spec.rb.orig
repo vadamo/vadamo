@@ -1,5 +1,9 @@
 # == Schema Information
+<<<<<<< HEAD
+# Schema version: 20100606023813
+=======
 # Schema version: 20100606181506
+>>>>>>> dev
 #
 # Table name: users
 #
