@@ -9,7 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20100606023813) do
+=======
+ActiveRecord::Schema.define(:version => 20100606181506) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "album_cover"
+  end
+
+  add_index "albums", ["user_id"], :name => "index_albums_on_user_id"
+>>>>>>> dev
 
   create_table "artworks", :force => true do |t|
     t.integer  "owner_id"

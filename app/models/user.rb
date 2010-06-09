@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100606023813
+# Schema version: 20100606181506
 #
 # Table name: users
 #
@@ -23,7 +23,9 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :avatar
 
   #has_many :microposts, :dependent => :destroy
+  has_many :albums,   :dependent => :destroy
   has_many :artworks,   :dependent => :destroy
+  has_many :pictures,   :dependent => :destroy
 
   has_attached_file :avatar,
                     :styles => { :medium => "300x300>", :thumb => "100x100>" },

@@ -1,0 +1,518 @@
+diff --git a/app/controllers/artworks_controller.rb b/app/controllers/artworks_controller.rb
+index 67e9e15..062be83 100644
+--- a/app/controllers/artworks_controller.rb
++++ b/app/controllers/artworks_controller.rb
+@@ -27,7 +27,7 @@ class ArtworksController < ApplicationController
+   
+     def authorized_user
+       @artwork = Artwork.find(params[:id])
+-      redirect_to root_path unless current_user?(@artwork.user)
++      redirect_to root_path unless current_user?(@artwork.user_id)
+     end
+ 
+ end
+diff --git a/app/models/artwork.rb b/app/models/artwork.rb
+index fdbfd38..d351606 100644
+--- a/app/models/artwork.rb
++++ b/app/models/artwork.rb
+@@ -1,32 +1,48 @@
+ # == Schema Information
+-# Schema version: 20100516044150
++# Schema version: 20100606181506
+ #
+ # Table name: artworks
+ #
+-#  id           :integer         not null, primary key
+-#  owner_id     :integer
+-#  filename     :string(255)
+-#  thumbail     :string(255)
+-#  size         :integer
+-#  height       :integer
+-#  width        :integer
+-#  content_type :integer
+-#  created_at   :datetime
+-#  updated_at   :datetime
+-#  user_id      :integer
++#  id                 :integer         not null, primary key
++#  owner_id           :integer
++#  filename           :string(255)
++#  thumbail           :string(255)
++#  size               :integer
++#  height             :integer
++#  width              :integer
++#  content_type       :integer
++#  created_at         :datetime
++#  updated_at         :datetime
++#  user_id            :integer
++#  description        :text
++#  type               :string(255)
++#  subtype            :string(255)
++#  print              :string(255)
++#  style              :string(255)
++#  subject            :string(255)
++#  tags               :text
++#  quantity           :integer
++#  quantity_remaining :integer
++#  edition_number     :integer
++#  physical_width     :integer(2)
++#  physical_height    :integer(2)
++#  physical_depth     :integer(2)
++#  physical_weight    :integer(2)
++#  physical_framed    :integer(2)
++#  price              :integer(2)
++#  ships_from         :string(255)
++#  ships_to           :string(255)
++#  shipping_cost      :integer(2)
++#  name               :string(255)
+ #
+ 
+ class Artwork < ActiveRecord::Base
+ 
+   belongs_to :user
++  belongs_to :album
+ 
+-  has_attachment :storage => :s3, 
+-  #                 :content_type => :image,
+-                 :max_size => 2.megabytes,
+-#                 :resize_to => '640x400>',
+-  :thumbnails => { :thumb => '100x100>' }
++  has_many :pictures,   :dependent => :destroy
+ 
+-  validates_as_attachment
+   validates_presence_of :user_id
+ 
+   default_scope :order => 'created_at DESC'
+diff --git a/app/models/micropost.rb b/app/models/micropost.rb
+index bf15a46..c810934 100644
+--- a/app/models/micropost.rb
++++ b/app/models/micropost.rb
+@@ -1,5 +1,5 @@
+ # == Schema Information
+-# Schema version: 20100516044150
++# Schema version: 20100606181506
+ #
+ # Table name: microposts
+ #
+diff --git a/app/models/user.rb b/app/models/user.rb
+index fa666c6..069899d 100644
+--- a/app/models/user.rb
++++ b/app/models/user.rb
+@@ -1,17 +1,21 @@
+ # == Schema Information
+-# Schema version: 20100516044150
++# Schema version: 20100606181506
+ #
+ # Table name: users
+ #
+-#  id                 :integer         not null, primary key
+-#  name               :string(255)
+-#  email              :string(255)
+-#  created_at         :datetime
+-#  updated_at         :datetime
+-#  encrypted_password :string(255)
+-#  salt               :string(255)
+-#  remember_token     :string(255)
+-#  admin              :boolean
++#  id                  :integer         not null, primary key
++#  name                :string(255)
++#  email               :string(255)
++#  created_at          :datetime
++#  updated_at          :datetime
++#  encrypted_password  :string(255)
++#  salt                :string(255)
++#  remember_token      :string(255)
++#  admin               :boolean
++#  avatar_file_name    :string(255)
++#  avatar_content_type :string(255)
++#  avatar_file_size    :integer
++#  avatar_updated_at   :datetime
+ #
+ 
+ class User < ActiveRecord::Base
+@@ -19,7 +23,9 @@ class User < ActiveRecord::Base
+   attr_accessible :name, :email, :password, :password_confirmation
+ 
+   #has_many :microposts, :dependent => :destroy
++  has_many :albums,   :dependent => :destroy
+   has_many :artworks,   :dependent => :destroy
++  has_many :pictures,   :dependent => :destroy
+ 
+   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+ 
+diff --git a/app/views/artworks/_artwork.html.erb b/app/views/artworks/_artwork.html.erb
+index e1c804f..ca362bf 100644
+--- a/app/views/artworks/_artwork.html.erb
++++ b/app/views/artworks/_artwork.html.erb
+@@ -1,7 +1,7 @@
+ <tr>
+   <td class="artwork">
+     <span class="content">
+-      <%= image_tag(artwork.public_filename) %>
++      <!-- image_tag(artwork.public_filename) -->used to be image here
+     </span>
+     <span class="timestamp">
+       Posted <%= time_ago_in_words(artwork.created_at) %> ago.
+diff --git a/app/views/artworks/show.html.erb b/app/views/artworks/show.html.erb
+index 25c25ec..7709fd3 100644
+--- a/app/views/artworks/show.html.erb
++++ b/app/views/artworks/show.html.erb
+@@ -1,6 +1,6 @@
+ <p>
+   <b>Owner:</b>
+-  <%=h @artwork.owner_id %>
++  <%=h @artwork.user_id %>
+ </p>
+ 
+ <p>
+@@ -35,4 +35,4 @@
+ 
+ 
+ <%= link_to 'Edit', edit_artwork_path(@artwork) %> |
+-<%= link_to 'Back', artworks_path %>
+\ No newline at end of file
++<%= link_to 'Back', artworks_path %>
+diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index 482c856..44b0ec9 100644
+--- a/app/views/layouts/application.html.erb
++++ b/app/views/layouts/application.html.erb
+@@ -15,7 +15,8 @@
+ 
+   <body>
+     <div class="container">
+-      <%= render 'layouts/header' %>
++      <%= render 'layouts/header1' %>
++      <%= render 'layouts/header2' %>
+       <div id="content" class="round">
+         <% flash.each do |key, value| %>
+           <div class="flash <%= key %>"><%= value %></div>
+diff --git a/app/views/pages/_artwork_feed_item.html.erb b/app/views/pages/_artwork_feed_item.html.erb
+index 72d9929..10cf4ce 100644
+--- a/app/views/pages/_artwork_feed_item.html.erb
++++ b/app/views/pages/_artwork_feed_item.html.erb
+@@ -7,7 +7,7 @@
+       <%= link_to h(artwork_feed_item.user.name), artwork_feed_item.user %>
+     </span>
+     <span class="content">
+-      <%= image_tag(artwork_feed_item.public_filename) %>
++      <%= image_tag(artwork_feed_item.pictures[0].image.url) %>
+     <span>
+     <span class="timestamp">
+       Posted <%= time_ago_in_words(artwork_feed_item.created_at) %> ago.
+diff --git a/app/views/pages/home.html.erb b/app/views/pages/home.html.erb
+index be15625..c19b655 100644
+--- a/app/views/pages/home.html.erb
++++ b/app/views/pages/home.html.erb
+@@ -1,18 +1,20 @@
+ <% if signed_in? %>
++<%= render 'pages/user_info' %>
+   <table class="front">
+     <tr>
+-      <td class="sidebar round">
+-        <%= render 'pages/user_info' %>
+-      </td>
+-    </tr>
+-    <tr></tr>
+-    <tr>
+       <td class="main">
+-	<h2 class="artwork">Show me what you got</h2>
+-	<%= render 'pages/artwork_form' %>
+-	<%= render 'pages/artwork_feed' %>
++	<h2 class="artwork">What would you like to do?</h2>
+       </td>
+     </tr>
++    <tr><td>Add a new piece of art</td></tr>
++    <tr><td>Artstream (Recent uploads, recent activity)</td></tr>
++    <tr><td>Dashboard</td></tr>
++    <tr><td>My lists/contacts</td></tr>
++    <tr><td>Browse art/Lists/groups</td></tr>
++    <tr><td>Social integration stuff</td></tr>
++    <tr><td>An ad</td></tr>
++    <tr><td><%= render 'pages/artwork_form' %></td></tr>
++    <tr><td><%= render 'pages/artwork_feed' %></td></tr>
+   </table>
+ 
+ <!-- hello -->
+@@ -21,7 +23,7 @@
+ 
+ <% else %>
+   <p>
+-    Welcome to Vadamo.com, the online marketplace for art. Vadamo is currently in alpha and under heavy construction. 
++    Welcome to Vadamo.com, the online marketplace for art. Vadamo is currently under construction. Please add your email address to be added to the list for our private beta, we will contact you soon. 
+   </p>
+   <%= link_to "Sign up now!", signup_url, :class => "signup_button round" %>
+ <% end %>
+diff --git a/config/routes.rb b/config/routes.rb
+index 3114d9f..ed6a1aa 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -3,14 +3,16 @@ ActionController::Routing::Routes.draw do |map|
+   map.resources :sessions,   :only => [:new, :create, :destroy]
+   map.resources :microposts, :only => [:create, :destroy]
+   map.resources :artworks,   :only => [:create, :destroy]
+-  map.signin  '/signin',  :controller => 'sessions', :action => 'new'
+-  map.signout '/signout', :controller => 'sessions', :action => 'destroy'
+-  map.contact '/contact', :controller => 'pages', :action => 'contact'
+-  map.about   '/about',   :controller => 'pages', :action => 'about'
+-  map.help    '/help',    :controller => 'pages', :action => 'help'
+-  map.signup  '/signup',  :controller => 'users', :action => 'new'
+-  map.users   '/users',   :controller => 'users', :action => 'show'
+-  map.privacy_policy   '/privacy_policy',   :controller => 'pages', :action => 'privacy_policy'
++  map.resources :pictures,   :only => [:create, :destroy]
++  map.signin   '/signin',  :controller => 'sessions', :action => 'new'
++  map.signout  '/signout', :controller => 'sessions', :action => 'destroy'
++  map.contact  '/contact', :controller => 'pages', :action => 'contact'
++  map.about    '/about',   :controller => 'pages', :action => 'about'
++  map.help     '/help',    :controller => 'pages', :action => 'help'
++  map.signup   '/signup',  :controller => 'users', :action => 'new'
++  map.users    '/users',   :controller => 'users', :action => 'show'
++  map.pictures '/pictures',   :controller => 'pictures', :action => 'show'
++  map.privacy_policy '/privacy_policy',   :controller => 'pages', :action => 'privacy_policy'
+   map.terms_of_use   '/terms_of_use',   :controller => 'pages', :action => 'terms_of_use'
+ 
+   # The priority is based upon order of creation: first created -> highest priority.
+diff --git a/db/schema.rb b/db/schema.rb
+index 331a64c..9c6a80b 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -9,7 +9,18 @@
+ #
+ # It's strongly recommended to check this file into your version control system.
+ 
+-ActiveRecord::Schema.define(:version => 20100516044150) do
++ActiveRecord::Schema.define(:version => 20100606181506) do
++
++  create_table "albums", :force => true do |t|
++    t.string   "name"
++    t.string   "description"
++    t.integer  "user_id"
++    t.datetime "created_at"
++    t.datetime "updated_at"
++    t.integer  "album_cover"
++  end
++
++  add_index "albums", ["user_id"], :name => "index_albums_on_user_id"
+ 
+   create_table "artworks", :force => true do |t|
+     t.integer  "owner_id"
+@@ -22,6 +33,36 @@ ActiveRecord::Schema.define(:version => 20100516044150) do
+     t.datetime "created_at"
+     t.datetime "updated_at"
+     t.integer  "user_id"
++    t.text     "description"
++    t.string   "type"
++    t.string   "subtype"
++    t.string   "print"
++    t.string   "style"
++    t.string   "subject"
++    t.text     "tags"
++    t.integer  "quantity"
++    t.integer  "quantity_remaining"
++    t.integer  "edition_number"
++    t.integer  "physical_width",     :limit => 2
++    t.integer  "physical_height",    :limit => 2
++    t.integer  "physical_depth",     :limit => 2
++    t.integer  "physical_weight",    :limit => 2
++    t.integer  "physical_framed",    :limit => 2
++    t.integer  "price",              :limit => 2
++    t.string   "ships_from"
++    t.string   "ships_to"
++    t.integer  "shipping_cost",      :limit => 2
++    t.string   "name"
++  end
++
++  add_index "artworks", ["user_id"], :name => "index_artworks_on_user_id"
++
++  create_table "comments", :force => true do |t|
++    t.integer  "user_id"
++    t.string   "body"
++    t.integer  "artwork_id"
++    t.datetime "created_at"
++    t.datetime "updated_at"
+   end
+ 
+   create_table "microposts", :force => true do |t|
+@@ -33,6 +74,22 @@ ActiveRecord::Schema.define(:version => 20100516044150) do
+ 
+   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
+ 
++  create_table "pictures", :force => true do |t|
++    t.integer  "user_id"
++    t.integer  "artwork_id"
++    t.string   "name"
++    t.string   "description"
++    t.string   "image_file_name"
++    t.string   "image_content_type"
++    t.integer  "image_file_size"
++    t.datetime "image_updated_at"
++    t.datetime "created_at"
++    t.datetime "updated_at"
++  end
++
++  add_index "pictures", ["artwork_id"], :name => "index_pictures_on_artwork_id"
++  add_index "pictures", ["user_id"], :name => "index_pictures_on_user_id"
++
+   create_table "users", :force => true do |t|
+     t.string   "name"
+     t.string   "email"
+@@ -42,6 +99,10 @@ ActiveRecord::Schema.define(:version => 20100516044150) do
+     t.string   "salt"
+     t.string   "remember_token"
+     t.boolean  "admin"
++    t.string   "avatar_file_name"
++    t.string   "avatar_content_type"
++    t.integer  "avatar_file_size"
++    t.datetime "avatar_updated_at"
+   end
+ 
+   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+diff --git a/public/stylesheets/custom.css b/public/stylesheets/custom.css
+index d30ef9e..b0bce83 100644
+--- a/public/stylesheets/custom.css
++++ b/public/stylesheets/custom.css
+@@ -60,6 +60,7 @@ a:visited {
+   background-color: white;
+   padding: 0 0.7em;
+   white-space: nowrap;
++  font-size: 40%;
+ }
+ 
+ ul.navigation {
+diff --git a/spec/fixtures/microposts.yml b/spec/fixtures/microposts.yml
+index 7cac9ca..e0683c4 100644
+--- a/spec/fixtures/microposts.yml
++++ b/spec/fixtures/microposts.yml
+@@ -1,5 +1,5 @@
+ # == Schema Information
+-# Schema version: 20100516044150
++# Schema version: 20100606181506
+ #
+ # Table name: microposts
+ #
+diff --git a/spec/fixtures/users.yml b/spec/fixtures/users.yml
+index f866149..3030243 100644
+--- a/spec/fixtures/users.yml
++++ b/spec/fixtures/users.yml
+@@ -1,17 +1,21 @@
+ # == Schema Information
+-# Schema version: 20100516044150
++# Schema version: 20100606181506
+ #
+ # Table name: users
+ #
+-#  id                 :integer         not null, primary key
+-#  name               :string(255)
+-#  email              :string(255)
+-#  created_at         :datetime
+-#  updated_at         :datetime
+-#  encrypted_password :string(255)
+-#  salt               :string(255)
+-#  remember_token     :string(255)
+-#  admin              :boolean
++#  id                  :integer         not null, primary key
++#  name                :string(255)
++#  email               :string(255)
++#  created_at          :datetime
++#  updated_at          :datetime
++#  encrypted_password  :string(255)
++#  salt                :string(255)
++#  remember_token      :string(255)
++#  admin               :boolean
++#  avatar_file_name    :string(255)
++#  avatar_content_type :string(255)
++#  avatar_file_size    :integer
++#  avatar_updated_at   :datetime
+ #
+ 
+ # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+diff --git a/spec/models/artwork_spec.rb b/spec/models/artwork_spec.rb
+index c5aa9eb..9d177e2 100644
+--- a/spec/models/artwork_spec.rb
++++ b/spec/models/artwork_spec.rb
+@@ -1,19 +1,39 @@
+ # == Schema Information
+-# Schema version: 20100516044150
++# Schema version: 20100606181506
+ #
+ # Table name: artworks
+ #
+-#  id           :integer         not null, primary key
+-#  owner_id     :integer
+-#  filename     :string(255)
+-#  thumbail     :string(255)
+-#  size         :integer
+-#  height       :integer
+-#  width        :integer
+-#  content_type :integer
+-#  created_at   :datetime
+-#  updated_at   :datetime
+-#  user_id      :integer
++#  id                 :integer         not null, primary key
++#  owner_id           :integer
++#  filename           :string(255)
++#  thumbail           :string(255)
++#  size               :integer
++#  height             :integer
++#  width              :integer
++#  content_type       :integer
++#  created_at         :datetime
++#  updated_at         :datetime
++#  user_id            :integer
++#  description        :text
++#  type               :string(255)
++#  subtype            :string(255)
++#  print              :string(255)
++#  style              :string(255)
++#  subject            :string(255)
++#  tags               :text
++#  quantity           :integer
++#  quantity_remaining :integer
++#  edition_number     :integer
++#  physical_width     :integer(2)
++#  physical_height    :integer(2)
++#  physical_depth     :integer(2)
++#  physical_weight    :integer(2)
++#  physical_framed    :integer(2)
++#  price              :integer(2)
++#  ships_from         :string(255)
++#  ships_to           :string(255)
++#  shipping_cost      :integer(2)
++#  name               :string(255)
+ #
+ 
+ require 'spec_helper'
+diff --git a/spec/models/user_spec.rb b/spec/models/user_spec.rb
+index 4715cfe..eb10500 100644
+--- a/spec/models/user_spec.rb
++++ b/spec/models/user_spec.rb
+@@ -1,17 +1,21 @@
+ # == Schema Information
+-# Schema version: 20100516044150
++# Schema version: 20100606181506
+ #
+ # Table name: users
+ #
+-#  id                 :integer         not null, primary key
+-#  name               :string(255)
+-#  email              :string(255)
+-#  created_at         :datetime
+-#  updated_at         :datetime
+-#  encrypted_password :string(255)
+-#  salt               :string(255)
+-#  remember_token     :string(255)
+-#  admin              :boolean
++#  id                  :integer         not null, primary key
++#  name                :string(255)
++#  email               :string(255)
++#  created_at          :datetime
++#  updated_at          :datetime
++#  encrypted_password  :string(255)
++#  salt                :string(255)
++#  remember_token      :string(255)
++#  admin               :boolean
++#  avatar_file_name    :string(255)
++#  avatar_content_type :string(255)
++#  avatar_file_size    :integer
++#  avatar_updated_at   :datetime
+ #
+ 
+ require 'spec_helper'
