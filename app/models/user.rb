@@ -1,17 +1,21 @@
 # == Schema Information
-# Schema version: 20100516044150
+# Schema version: 20100606181506
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
-#  remember_token     :string(255)
-#  admin              :boolean
+#  id                  :integer         not null, primary key
+#  name                :string(255)
+#  email               :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  encrypted_password  :string(255)
+#  salt                :string(255)
+#  remember_token      :string(255)
+#  admin               :boolean
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 class User < ActiveRecord::Base
@@ -19,7 +23,9 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   #has_many :microposts, :dependent => :destroy
+  has_many :albums,   :dependent => :destroy
   has_many :artworks,   :dependent => :destroy
+  has_many :pictures,   :dependent => :destroy
 
   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

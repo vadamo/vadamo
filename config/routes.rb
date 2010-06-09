@@ -2,15 +2,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :sessions,   :only => [:new, :create, :destroy]
   map.resources :microposts, :only => [:create, :destroy]
-  map.resources :artworks,   :only => [:create, :destroy]
-  map.signin  '/signin',  :controller => 'sessions', :action => 'new'
-  map.signout '/signout', :controller => 'sessions', :action => 'destroy'
-  map.contact '/contact', :controller => 'pages', :action => 'contact'
-  map.about   '/about',   :controller => 'pages', :action => 'about'
-  map.help    '/help',    :controller => 'pages', :action => 'help'
-  map.signup  '/signup',  :controller => 'users', :action => 'new'
-  map.users   '/users',   :controller => 'users', :action => 'show'
-  map.privacy_policy   '/privacy_policy',   :controller => 'pages', :action => 'privacy_policy'
+  map.resources :artworks
+  map.resources :pictures,   :only => [:new, :create, :destroy, :show]
+  map.signin   '/signin',  :controller => 'sessions', :action => 'new'
+  map.signout  '/signout', :controller => 'sessions', :action => 'destroy'
+  map.contact  '/contact', :controller => 'pages', :action => 'contact'
+  map.about    '/about',   :controller => 'pages', :action => 'about'
+  map.help     '/help',    :controller => 'pages', :action => 'help'
+  map.signup   '/signup',  :controller => 'users', :action => 'new'
+  map.users    '/users',   :controller => 'users', :action => 'show'
+  map.pictures '/pictures',   :controller => 'pictures', :action => 'show'
+  map.privacy_policy '/privacy_policy',   :controller => 'pages', :action => 'privacy_policy'
   map.terms_of_use   '/terms_of_use',   :controller => 'pages', :action => 'terms_of_use'
 
   # The priority is based upon order of creation: first created -> highest priority.

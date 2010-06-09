@@ -1,18 +1,20 @@
 <% if signed_in? %>
+<%= render 'pages/user_info' %>
   <table class="front">
     <tr>
-      <td class="sidebar round">
-        <%= render 'pages/user_info' %>
-      </td>
-    </tr>
-    <tr></tr>
-    <tr>
       <td class="main">
-	<h2 class="artwork">Show me what you got</h2>
-	<%= render 'pages/artwork_form' %>
-	<%= render 'pages/artwork_feed' %>
+	<h2 class="artwork">What would you like to do?</h2>
       </td>
     </tr>
+    <tr><td>Add a new piece of art</td></tr>
+    <tr><td>Artstream (Recent uploads, recent activity)</td></tr>
+    <tr><td>Dashboard</td></tr>
+    <tr><td>My lists/contacts</td></tr>
+    <tr><td>Browse art/Lists/groups</td></tr>
+    <tr><td>Social integration stuff</td></tr>
+    <tr><td>An ad</td></tr>
+    <tr><td><%= render 'pages/artwork_form' %></td></tr>
+    <tr><td><%= render 'pages/artwork_feed' %></td></tr>
   </table>
 
 <!-- hello -->
@@ -21,7 +23,7 @@
 
 <% else %>
   <p>
-    Welcome to Vadamo.com, the online marketplace for art. Vadamo is currently in alpha and under heavy construction. 
+    Welcome to Vadamo.com, the online marketplace for art. Vadamo is currently under construction. Please add your email address to be added to the list for our private beta, we will contact you soon. 
   </p>
   <%= link_to "Sign up now!", signup_url, :class => "signup_button round" %>
 <% end %>

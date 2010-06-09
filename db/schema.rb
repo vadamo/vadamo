@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100516044150) do
+ActiveRecord::Schema.define(:version => 20100606181506) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "album_cover"
+  end
+
+  add_index "albums", ["user_id"], :name => "index_albums_on_user_id"
 
   create_table "artworks", :force => true do |t|
     t.integer  "owner_id"
@@ -22,6 +33,36 @@ ActiveRecord::Schema.define(:version => 20100516044150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.text     "description"
+    t.string   "type"
+    t.string   "subtype"
+    t.string   "print"
+    t.string   "style"
+    t.string   "subject"
+    t.text     "tags"
+    t.integer  "quantity"
+    t.integer  "quantity_remaining"
+    t.integer  "edition_number"
+    t.integer  "physical_width",     :limit => 2
+    t.integer  "physical_height",    :limit => 2
+    t.integer  "physical_depth",     :limit => 2
+    t.integer  "physical_weight",    :limit => 2
+    t.integer  "physical_framed",    :limit => 2
+    t.integer  "price",              :limit => 2
+    t.string   "ships_from"
+    t.string   "ships_to"
+    t.integer  "shipping_cost",      :limit => 2
+    t.string   "name"
+  end
+
+  add_index "artworks", ["user_id"], :name => "index_artworks_on_user_id"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "body"
+    t.integer  "artwork_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "microposts", :force => true do |t|
@@ -33,6 +74,22 @@ ActiveRecord::Schema.define(:version => 20100516044150) do
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
+  create_table "pictures", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "artwork_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pictures", ["artwork_id"], :name => "index_pictures_on_artwork_id"
+  add_index "pictures", ["user_id"], :name => "index_pictures_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -42,6 +99,10 @@ ActiveRecord::Schema.define(:version => 20100516044150) do
     t.string   "salt"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

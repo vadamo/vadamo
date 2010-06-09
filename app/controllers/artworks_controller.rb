@@ -18,6 +18,10 @@ class ArtworksController < ApplicationController
     redirect_back_or root_path
   end
 
+  def show
+    @artwork = Artwork.find(params[:id])
+  end
+
   def index
     @title = "All artwork"
     @artworks = Artwork.paginate(:page => params[:page])
@@ -27,7 +31,7 @@ class ArtworksController < ApplicationController
   
     def authorized_user
       @artwork = Artwork.find(params[:id])
-      redirect_to root_path unless current_user?(@artwork.user)
+      redirect_to root_path unless current_user?(@artwork.user_id)
     end
 
 end

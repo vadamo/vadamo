@@ -7,7 +7,7 @@
       <%= link_to h(artwork_feed_item.user.name), artwork_feed_item.user %>
     </span>
     <span class="content">
-      <%= image_tag(artwork_feed_item.public_filename) %>
+      <%= image_tag(artwork_feed_item.pictures[0].image.url) %>
     <span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(artwork_feed_item.created_at) %> ago.

@@ -1,6 +1,6 @@
 <p>
   <b>Owner:</b>
-  <%=h @artwork.owner_id %>
+  <%=h @artwork.user_id %>
 </p>
 
 <p>
@@ -32,6 +32,16 @@
   <b>Content type:</b>
   <%=h @artwork.content_type %>
 </p>
+
+<p>
+  <b>Pictures</b>
+  <% unless @artwork.pictures.empty? %>
+  <table class="pictures">
+    <%= render @artwork.pictures %>
+  </table>
+  <!-- will_paginate @artwork.pictures -->
+  <% end %>
+
 
 
 <%= link_to 'Edit', edit_artwork_path(@artwork) %> |
