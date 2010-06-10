@@ -1,7 +1,7 @@
 <tr>
   <td class="artwork">
     <span class="content">
-      <!-- image_tag(artwork.public_filename) -->used to be image here
+      <!-- image_tag(artwork.album) -->primary image
     </span>
     <span class="timestamp">
       Posted <%= time_ago_in_words(artwork.created_at) %> ago.
@@ -11,12 +11,12 @@
     </span>
   </td>
   <td>
-    <%= link_to artwork.id, artwork, :method => :show %>
+    <%= link_to h(artwork.id), artwork %>
   </td>
   <% if current_user?(artwork.user) %>
-  <td>
-    <%= link_to "delete", artwork, :method => :delete,
+    <td>
+      <%= link_to "delete", artwork, :method => :delete,
                                      :confirm => "You sure?" %>
-  </td>
+    </td>
   <% end %>
 </tr>

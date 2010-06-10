@@ -30,6 +30,10 @@ class ArtworksController < ApplicationController
     @artworks = Artwork.paginate(:page => params[:page])
   end
 
+  def edit
+    @artwork = Artwork.find(params[:id])
+  end  
+
   private
   
     def authorized_user

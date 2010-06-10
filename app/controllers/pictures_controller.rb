@@ -2,7 +2,7 @@ class PicturesController < ApplicationController
   before_filter :authenticate, :only => [:create, :destroy] 
   before_filter :authorized_artwork, :only => [:create]
   before_filter :authorized_user, :only => [:destroy]
-  
+
   def create
     @picture = Picture.create( params[:picture] )
 

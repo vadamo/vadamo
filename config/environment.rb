@@ -42,5 +42,5 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate', :version => '2.3.12'
 
   # some page said i needed this, looks sketchy
-  # config.gem 'right_aws' 
+  # config.gem 'right_aws'
 end
