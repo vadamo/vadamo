@@ -21,16 +21,11 @@ class Picture < ActiveRecord::Base
 
   belongs_to :artwork
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-
-#  has_attachment :storage => :s3, 
-#                 :content_type => :image,
-#                 :max_size => 2.megabytes,
-#                 :resize_to => '640x400>',
-#  :thumbnails => { :thumb => '100x100>' }
-
-#  validates_as_attachment
-#  validates_presence_of :picture_id
+  has_attached_file :image, 
+                    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                    :storage => :s3,
+                    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+                    :path => ":class/:id/:style.:extension"
 
   default_scope :order => 'created_at DESC'
 

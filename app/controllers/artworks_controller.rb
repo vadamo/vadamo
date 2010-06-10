@@ -20,12 +20,19 @@ class ArtworksController < ApplicationController
 
   def show
     @artwork = Artwork.find(params[:id])
+    @title = 'your artwork number %d' % params[:id]
+    @picture = @artwork.pictures.build
+    #@picture.artwork_id = @artwork.id
   end
 
   def index
     @title = "All artwork"
     @artworks = Artwork.paginate(:page => params[:page])
   end
+
+  def edit
+    @artwork = Artwork.find(params[:id])
+  end  
 
   private
   

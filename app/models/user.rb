@@ -20,12 +20,18 @@
 
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :avatar
 
   #has_many :microposts, :dependent => :destroy
   has_many :albums,   :dependent => :destroy
   has_many :artworks,   :dependent => :destroy
   has_many :pictures,   :dependent => :destroy
+
+  has_attached_file :avatar,
+                    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                    :storage => :s3, 
+                    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+                    :path => ":class/:id/:style.:extension"
 
   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

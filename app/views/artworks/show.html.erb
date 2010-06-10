@@ -13,6 +13,25 @@
   <%=h @artwork.thumbail %>
 </p>
 
+Count <!-- @pictures.count -->
+
+<% @artwork.pictures.each do |picture| %>
+  <tr>
+    <td><%= h picture.user_id %></td>
+    <td><%= image_tag picture.image.url %></td>
+    <td><%= link_to 'Show', picture %></td>
+    <td><%= link_to 'Edit', picture %></td>
+    <td><%= link_to 'Destroy', picture, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+
+<%= link_to 'Add picturex', new_picture_path %>
+
+You have <%= @artwork.pictures.count %>
+ and id <%= @picture.artwork_id %>
+
+<%= render :partial => 'pictures/new_picture', :object => @picture %>
+
 <p>
   <b>Size:</b>
   <%=h @artwork.size %>
