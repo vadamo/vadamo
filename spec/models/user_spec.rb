@@ -235,10 +235,10 @@ describe User do
 
     before(:each) do
       @user = User.create(@attr)
-      # Need Size, Content type, filename
-      @aw1 = Factory(:artwork, :user => @user, :created_at => 1.day.ago) 
-      @aw2 = Factory(:artwork, :user => @user, :created_at => 1.hour.ago)
+      @aw1 = Factory(:artwork, :user => @user, :created_at => 1.day.ago, :content_type => 'foo', :size => 1.kilobyte, :filename => "test.jpg") 
+      @aw2 = Factory(:artwork, :user => @user, :created_at => 1.hour.ago, :content_type => 'foo', :size => 1.kilobyte, :filename => "test2.jpg") 
     end
+    
 
     it "should have a artworks attribute" do
       @user.should respond_to(:artworks)

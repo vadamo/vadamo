@@ -21,7 +21,7 @@ describe ArtworksController do
 
     before(:each) do
       @user = test_sign_in(Factory(:user))
-      @attr = { :content => "Lorem ipsum" }
+      @attr = { }
       @artwork = Factory(:artwork, @attr.merge(:user => @user))
 
       @user.artworks.stub!(:build).and_return(@artwork)

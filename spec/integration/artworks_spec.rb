@@ -26,7 +26,7 @@ describe "Artworks" do
 
     describe "success" do
   
-      it "should make a new user" do
+      it "should make a new artwork" do
         content = "Lorem ipsum dolor sit amet"
         lambda do
           visit root_path
