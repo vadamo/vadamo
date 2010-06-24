@@ -54,3 +54,5 @@ end
 Factory.define :picture do |picture|
   picture.association :artwork
 end
+
+

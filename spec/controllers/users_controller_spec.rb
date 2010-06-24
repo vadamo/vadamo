@@ -41,8 +41,6 @@ describe UsersController do
 
     #fix this
 #    it "should show the user's artworks" do
-#      aw1 = Factory(:artwork, :user => @user)
-#      aw2 = Factory(:artwork, :user => @user)
 #      aw1 = Factory(:artwork, :user => @user, :created_at => 1.day.ago, :content_type => 'foo', :size => 1.kilobyte, :filename => "test.jpg") 
 #      aw2 = Factory(:artwork, :user => @user, :created_at => 1.hour.ago, :content_type => 'foo', :size => 1.kilobyte, :filename => "test2.jpg") 
 
@@ -74,7 +72,7 @@ describe UsersController do
       before(:each) do
         @attr = { :name => "", :email => "", :password => "",
           :password_confirmation => "" }
-        @secret_attr = { :Secret_Code => "alpha732" }
+        @secret_attr = { :Secret_Code => "alpha732" } 
         @user = Factory.build(:user, @attr)
         User.stub!(:new).and_return(@user)
         @user.should_receive(:save).and_return(false)
