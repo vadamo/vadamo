@@ -14,13 +14,14 @@
 <% @artworks.each do |artwork| %>
   <tr>
     <td><%=h artwork.owner_id %></td>
-    <td><%=h artwork.filename %></td>
+    <td><%=h artwork.pictures[0].filename %></td>
     <td><%=h artwork.thumbail %></td>
     <td><%=h artwork.size %></td>
     <td><%=h artwork.height %></td>
     <td><%=h artwork.width %></td>
     <td><%=h artwork.content_type %></td>
     <td><%= link_to 'Show', artwork %></td>
+    <td><%= link_to 'Edit', artwork %></td>
     <td><%= link_to 'Destroy', artwork, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
