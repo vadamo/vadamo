@@ -16,8 +16,11 @@ require 'spec_helper'
 
 describe Album do
   before(:each) do
+
+    @user = Factory(:user)
+
     @valid_attributes = {
-      
+      :user_id => @user.id
     }
   end
 

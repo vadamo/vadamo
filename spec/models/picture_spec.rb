@@ -25,11 +25,11 @@ describe Picture do
 
     # Need Size, Content type, filename
     @attr = {
-      :artwork => @artwork, 
+      :artwork_id => @artwork.id, 
       :created_at => 1.day.ago, 
-      :content_type => 'foo', 
-      :size => 1.kilobyte, 
-      :filename => "test.jpg"
+      :image_content_type => 'foo', 
+      :image_file_size => 1.kilobyte, 
+      :image_file_name => "test.jpg"
     }
   end
 

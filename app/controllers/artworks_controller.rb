@@ -5,7 +5,7 @@ class ArtworksController < ApplicationController
   def create
     @artwork = current_user.artworks.build(params[:artwork])
     if @artwork.save
-      flash[:notice] = 'Artwork created!'
+      flash[:success] = 'Artwork created!'
       redirect_to root_path
     else
       @artwork_feed_items = []
