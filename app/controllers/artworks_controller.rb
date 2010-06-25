@@ -22,7 +22,7 @@ class ArtworksController < ApplicationController
     @artwork = Artwork.find(params[:id])
     @title = 'your artwork number %d' % params[:id]
     @picture = @artwork.pictures.build
-#    @picture.artwork_id  = @artwork.id
+#   @picture.artwork_id = @artwork.id
   end
 
   def index
