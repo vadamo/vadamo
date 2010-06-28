@@ -1,17 +1,11 @@
 <table class="profile">
   <tr>
     <td class="main">
-      <h2>
-	a1<%= image_tag @user.avatar.url %>
-	a2<%= image_tag @user.avatar.url(:medium) %>
-	a3<%= image_tag @user.avatar.url(:thumb) %>
-        <%= h @user.name %>
-      </h2>
-    </td>
-    <td class="sidebar round">
-      <strong>Name</strong> <%= h @user.name %><br />
-      <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
-      <strong>Artworks</strong> <%= @user.artworks.count %>
+      <strong>Name</strong> <%= h @user.name %><br/>
+      Avatar:      <%= image_tag @user.avatar.url(:thumb) %><br />
+      URL: <%= link_to user_path(@user), @user %><br />
+      Artworks: <%= @user.artworks.count %><br />
+      <%= link_to "Edit Profile", edit_user_path(@user) %><br />
     </td>
   </tr>
   <tr>

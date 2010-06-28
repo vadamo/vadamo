@@ -1,17 +1,19 @@
 class PicturesController < ApplicationController
   before_filter :authenticate, :only => [:create, :destroy] 
-  before_filter :authorized_artwork, :only => [:create]
+#  before_filter :authorized_artwork, :only => [:create]
   before_filter :authorized_user, :only => [:destroy]
 
   def create
     @picture = Picture.create( params[:picture] )
 
     if @picture.save 
-      flash[:notice] = 'Picture created!' % params[:picture][:artwork_id]
+      flash[:success] = 'Picture created!' 
+#% params[:picture][:artwork_id]
       redirect_to root_path
+#      render 'pages/home'
     else
-      flash[:notice] = 'Picture creation failed'
-      redirect_to root_path
+#      flash[:failure] = 'Picture creation failed'
+      render 'pages/home'
     end
   end
 
@@ -38,9 +40,9 @@ class PicturesController < ApplicationController
     end
 
     def authorized_artwork
-      @artwork = Artwork.find(params[:picture][:artwork_id])
-      flash[:notice] = "fuck"
-      redirect_to root_path unless current_user.id == @artwork.user_id
+#       @artwork = Artwork.find(params[:picture][:artwork_id])
+#       flash[:notice] = "fuck"
+#       redirect_to root_path unless current_user.id == @artwork.user_id
     end
 
 end

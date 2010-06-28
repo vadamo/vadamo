@@ -83,7 +83,7 @@ describe ArtworksController do
         Artwork.should_receive(:find).with(@artwork).and_return(@artwork)
       end
 
-      it "should destroy the user" do
+      it "should destroy the artwork" do
         @artwork.should_receive(:destroy).and_return(@artwork)
         delete :destroy, :id => @artwork
       end

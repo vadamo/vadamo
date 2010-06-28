@@ -15,6 +15,8 @@ class ArtworksController < ApplicationController
 
   def destroy
     @artwork.destroy
+#     artwork = Artwork.find(params[:id]).destroy
+#     flash[:success] = "Artwork destroyed."
     redirect_back_or root_path
   end
 
@@ -38,7 +40,7 @@ class ArtworksController < ApplicationController
   
     def authorized_user
       @artwork = Artwork.find(params[:id])
-      redirect_to root_path unless current_user?(@artwork.user_id)
+      redirect_to root_path unless current_user?(@artwork.user)
     end
 
 end

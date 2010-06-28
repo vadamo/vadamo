@@ -21,11 +21,11 @@ describe PicturesController do
 
     before(:each) do
       @user = test_sign_in(Factory(:user, :email => Factory.next(:email)))
-      # @attr = { }
-      # @artwork = Factory(:artwork, @attr.merge(:user => @user))
-      @attr = { :size => 1.kilobyte, :content_type => 'foo', :filename => "rattle77", :owner_id => @user.id } 
-      @picture = Factory(:picture, @attr)
-      # @artwork.pictures.stub!(:build).and_return(@picture)
+      @attr = { }
+      @artwork = Factory(:artwork, @attr.merge(:user => @user))
+      @attxr = { :image_file_size => 1.kilobyte, :image_content_type => 'foo', :image_file_name => "rattle77", :user_id => @user.id, :artwork_id => @artwork.id } 
+      @picture = Factory(:picture, @attxr)
+      @artwork.pictures.stub!(:build).and_return(@picture)
     end
 
     describe "failure" do
@@ -35,24 +35,24 @@ describe PicturesController do
       end
 
       it "should render the home page" do
-        post :create, :picture => @attr
+        post :create, :picture => @attxr
         response.should render_template('pages/home')
       end
     end
 
     describe "success" do
-
+      
       before(:each) do
         @picture.should_receive(:save).and_return(true)
       end
 
       it "should redirect to the home page" do
-        post :create, :picture => @attr
+        post :create, :picture => @attxr
         response.should redirect_to(root_path)
       end
 
       it "should have a flash message" do
-        post :create, :picture => @attr
+        post :create, :picture => @attxr
         flash[:success].should =~ /picture created/i
       end
     end
@@ -68,8 +68,8 @@ describe PicturesController do
         test_sign_in(wrong_user)
         @attr = { }
         @artwork = Factory(:artwork, @attr.merge(:user => @user))
-        @attr = { :size => 1.kilobyte, :content_type => 'foo', :filename => "rattle77", :owner_id => @user.id } 
-        @picture = Factory(:picture, @attr.merge(:artwork =>  @artwork))
+        @attr2 = { :image_file_size => 1.kilobyte, :image_content_type => 'foo', :image_file_name => "rattle77", :user_id => @user.id } 
+        @picture = Factory(:picture, @attr2.merge(:artwork =>  @artwork))
       end
 
       it "should deny access" do
@@ -86,8 +86,8 @@ describe PicturesController do
         @user = test_sign_in(user)
         @attr = { }
         @artwork = Factory(:artwork, @attr.merge(:user => @user))
-        @attr = { :size => 1.kilobyte, :content_type => 'foo', :filename => "rattle77", :owner_id => @user.id } 
-        @picture = Factory(:picture, @attr.merge(:artwork =>  @artwork))
+        @attr2 = { :image_file_size => 1.kilobyte, :image_content_type => 'foo', :image_file_name => "rattle77", :user_id => @user.id } 
+        @picture = Factory(:picture, @attr2.merge(:artwork =>  @artwork))
 
         Picture.should_receive(:find).with(@picture).and_return(@picture)
       end
