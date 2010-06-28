@@ -1,9 +1,9 @@
 rails --version 2.3.8
-will_paginate
+will_paginate --version 2.3.12
 faker
 aws-s3
-actionmailer
-actionpack
+actionmailer --version 2.3.8
+actionpack --version 2.3.8
 actionwebservice
 activerecord
 activeresource
@@ -15,7 +15,6 @@ cgi_multipart_eof_fix
 columnize
 configuration
 daemons
-factory_girl
 fastthread
 ferret
 gem_plugin
@@ -31,7 +30,7 @@ mime-types
 mongrel
 needle
 nokogiri
-rack
+rack --version 1.1.0
 rake
 RedCloth
 rest-client
@@ -47,3 +46,6 @@ webrat
 xml-simple
 xmpp4r
 ZenTest
+
+
+
