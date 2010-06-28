@@ -17,7 +17,6 @@ configuration
 daemons
 factory_girl
 fastthread
-fcgi
 ferret
 gem_plugin
 heroku
@@ -31,18 +30,11 @@ linecache
 mime-types
 mongrel
 needle
-net-scp
-net-sftp
-net-ssh
-net-ssh-gateway
 nokogiri
 rack
-rack-test
 rake
 RedCloth
 rest-client
-rspec
-rspec-rails
 ruby-debug
 ruby-debug-base
 ruby-openid
