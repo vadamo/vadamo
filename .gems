@@ -10,7 +10,6 @@ activeresource
 activesupport
 acts_as_ferret
 autotest
-autotest-fsevent
 autotest-growl
 autotest-rails
 builder
