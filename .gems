@@ -9,16 +9,12 @@ activerecord
 activeresource
 activesupport
 acts_as_ferret
-autotest
-autotest-growl
-autotest-rails
 builder
 capistrano
 cgi_multipart_eof_fix
 columnize
 configuration
 daemons
-dnssd
 factory_girl
 fastthread
 fcgi
