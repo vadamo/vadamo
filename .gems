@@ -1,4 +1,4 @@
-rails -v 2.3.8
+rails --version 2.3.8
 will_paginate
 faker
 aws-s3
