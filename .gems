@@ -40,7 +40,6 @@ ruby-debug-base
 ruby-openid
 ruby-yadis
 rubygems-update
-rubynode
 sqlite3-ruby
 sys-uname
 termios
