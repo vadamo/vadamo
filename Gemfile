@@ -1,3 +1,4 @@
+source :gemcutter
 gem 'rails', '2.3.8'
 gem 'will_paginate', '2.3.12'
 gem 'faker'
