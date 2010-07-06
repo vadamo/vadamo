@@ -29,12 +29,23 @@ class ArtworksController < ApplicationController
 
   def index
     @title = "All artwork"
-    @artworks = Artwork.paginate(:page => params[:page])
+#    @artworks = Artwork.pginate(:page => params[:page])
   end
 
   def edit
     @artwork = Artwork.find(params[:id])
   end  
+
+  def update
+    @artwork = Artwork.find(params[:id])
+    if @artwork.update_attributes(params[:artwork])
+      flash[:success] = "Artwork updated."
+      redirect_to @artwork
+    else
+      @title = "Edit artwork"
+      render 'edit'
+    end
+  end
 
   private
   
@@ -42,5 +53,4 @@ class ArtworksController < ApplicationController
       @artwork = Artwork.find(params[:id])
       redirect_to root_path unless current_user?(@artwork.user)
     end
-
 end

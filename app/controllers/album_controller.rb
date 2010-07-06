@@ -44,7 +44,7 @@ class AlbumsController < ApplicationController
 
   def index
     @title = "All albums"
-    @albums = Album.paginate(:page => params[:page])
+#    @albums = Album.pginate(:page => params[:page])
   end
 
   private

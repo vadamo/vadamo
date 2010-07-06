@@ -25,6 +25,21 @@
 <p><%= render :partial => 'pictures/new_picture', :object => @picture %></p>
 
 <p>
+  <b>Size:</b>
+  <%=h @artwork.size %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%=h @artwork.height %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @artwork.width %>
+</p>
+
+<p>
   <b>Content type:</b>
   <%=h @artwork.content_type %>
 </p>
@@ -36,8 +51,48 @@
 </p>
 
 <p>
+  <b>Description:</b>
+  <%=h @artwork.description %>
+</p>
+
+<p>
   <b>Type:</b>
   <%=h @artwork.type %>
+</p>
+
+<p>
+  <b>Subtype:</b>
+  <%=h @artwork.subtype %>
+</p>
+
+<p>
+  <b>Print:</b>
+  <%=h @artwork.print %>
+</p>
+
+<p>
+  <b>Style:</b>
+  <%=h @artwork.style %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%=h @artwork.subject %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%=h @artwork.tags %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @artwork.quantity %>
+</p>
+
+<p>
+  <b>Quantity_remaining:</b>
+  <%=h @artwork.quantity_remaining %>
 </p>
 
 <p>
@@ -61,11 +116,35 @@
 </p>
 
 <p>
+  <b>Physical_weight:</b>
+  <%=h @artwork.physical_weight %>
+</p>
+
+<p>
+  <b>Physical_framed:</b>
+  <%=h @artwork.physical_framed %>
+</p>
+
+<p>
   <b>Price:</b>
   <%=h @artwork.price %>
 </p>
 
-logo artist title share year medium copyright
+<p>
+  <b>Ships_from:</b>
+  <%=h @artwork.ships_from %>
+</p>
+
+<p>
+  <b>Ships_to:</b>
+  <%=h @artwork.ships_to %>
+</p>
+
+<p>
+  <b>Shipping_cost:</b>
+  <%=h @artwork.shipping_cost %>
+</p>
+logo artist title share year medium size copyright edition price 
 
 <%= link_to 'Edit', edit_artwork_path(@artwork) %> |
 <%= link_to 'Back', artworks_path %>

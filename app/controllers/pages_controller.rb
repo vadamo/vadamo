@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 #      @micropost = Micropost.new
       @artwork = Artwork.new
 #      @feed_items = current_user.feed.paginate(:page => params[:page])
-      @artwork_feed_items = current_user.artwork_feed.paginate(:page => params[:page])
+#      @artwork_feed_items = current_user.artwork_feed.paginate(:page => params[:page])
     end
   end
 
