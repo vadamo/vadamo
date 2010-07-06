@@ -141,7 +141,7 @@ td.sidebar {
   background: #ffc;
 }
 
-.profile img.gravatar {
+.profile img.avatar {
   border: 1px solid #999;
   margin-bottom: -15px;
 }
@@ -206,7 +206,7 @@ table.microposts tr {
   height: 70px;
 }
 
-table.microposts tr td.gravatar {
+table.microposts tr td.avatar {
   border-top: 1px solid #ccc;
   vertical-align: top;
   width: 50px;

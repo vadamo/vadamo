@@ -22,8 +22,8 @@ this page is not working
 ###
 
 ###<tr>
-  <td class="gravatar">
-    <%= link_to gravatar_for(artwork_feed_item.user), artwork_feed_item.user %>
+  <td class="avatar">
+    <%= link_to artwork_feed_item.user.avatar.url(:thumb), artwork_feed_item.user %>
   </td>
   <td class="artwork">
     <span class="user">

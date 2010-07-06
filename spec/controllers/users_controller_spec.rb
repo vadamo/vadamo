@@ -28,7 +28,7 @@ describe UsersController do
 
     it "should have a profile image" do
       get :show, :id => @user
-      response.should have_tag("h2>img", :class => "gravatar")
+      response.should have_tag("h2>img", :class => "avatar")
     end
 
 #     it "should show the user's microposts" do
@@ -134,11 +134,6 @@ describe UsersController do
       response.should have_tag("title", /edit user/i)
     end
 
-    it "should have a link to change the Gravatar" do
-      get :edit, :id => @user
-      gravatar_url = "http://gravatar.com/emails"
-      response.should have_tag("a[href=?]", gravatar_url, /change/i)
-    end
   end
 
   describe "PUT 'update'" do
