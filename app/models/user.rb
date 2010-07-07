@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
                     :styles => { :medium => "300x300>", :thumb => "100x100>" },
                     :storage => :s3, 
                     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+                    :url => ":s3_alias_url",
+                    :s3_host_alias => 'images.vadamo.com',
                     :path => ":class/:id/:style.:extension"
 
   EmailRegex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

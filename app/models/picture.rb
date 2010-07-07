@@ -27,6 +27,8 @@ class Picture < ActiveRecord::Base
                     :styles => { :medium => "300x300>", :thumb => "100x100>" },
                     :storage => :s3, 
                     :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+                    :url => ":s3_alias_url",
+                    :s3_host_alias => "images.vadamo.com",
                     :path => ":class/:id/:style.:extension"
 
   validates_attachment_presence :image
