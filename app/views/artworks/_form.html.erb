@@ -1,10 +1,10 @@
 <%= error_messages_for :artwork %>
-<% form_for @artwork do |f| -%>
+<% form_for @artwork, :html => { :multipart => true } do |f| -%>
 <div id="pictures">
   <%= render :partial => 'picture', :collection => @artwork.pictures %>
 </div>
 <p>
-  <%= add_picture_link "Add a picture" %>
+  <!-- add_picture_link "Add a picture" -->
 </p>
 
   <p>

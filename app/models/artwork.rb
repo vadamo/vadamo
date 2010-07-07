@@ -48,6 +48,8 @@ class Artwork < ActiveRecord::Base
   validates_presence_of :user_id
   validates_associated  :pictures
 
+  accepts_nested_attributes_for :pictures
+
   default_scope :order => 'created_at DESC'
 
   def new_picture_attributes=(picture_attributes)
