@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20100606181506
+# Schema version: 20100706223154
 #
 # Table name: artworks
 #
@@ -34,6 +34,8 @@
 #  ships_to           :string(255)
 #  shipping_cost      :integer(2)
 #  name               :string(255)
+#  year               :integer
+#  medium             :string(255)
 #
 
 class Artwork < ActiveRecord::Base

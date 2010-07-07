@@ -1,14 +1,14 @@
 development:
-  bucket: vadamo_production
+  bucket: images.vadamo.com
   access_key_id: AKIAIF5OLKPQKPYEKTYQ
   secret_access_key: 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
 
 test:
-  bucket: vadamo_production
+  bucket: images.vadamo.com
   access_key_id: AKIAIF5OLKPQKPYEKTYQ
   secret_access_key: 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
 
 production:
-  bucket: vadamo_production
+  bucket: images.vadamo.com
   access_key_id: AKIAIF5OLKPQKPYEKTYQ
   secret_access_key: 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
