@@ -1,63 +1,42 @@
+<%= link_to image_tag("Vadamo_logo.jpg", :height => "15%", :width => "15%"), root_path %>
+
 <p>
-  <b>Owner:</b>
-  <%=h @artwork.user_id %>
+  <%= link_to image_tag(@artwork.user.avatar.url(:thumb), :height => 64, :width => 64), @artwork.user %>
+<%= link_to @artwork.user.name, @artwork.user %>
 </p>
 
-<p>Count <%= @artwork.pictures.count %></p>
-
-<table>
-<% @artwork.pictures.each do |picture| %>
-  <tr>
-    <td><%= h picture.user_id %></td>
-    <td><%= image_tag picture.image.url(:thumb) %></td>
-    <td><%= link_to 'Show', picture %></td>
-    <td><%= link_to 'Edit', picture %></td>
-    <td><%= link_to 'Destroy', picture, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<p><%= link_to 'Add picturex', new_picture_path %></p>
-
-<p>You have <%= @artwork.pictures.count %>
- and id <%= @picture.artwork_id %></p>
-
-<p><%= render :partial => 'pictures/new_picture', :object => @picture %></p>
-
 <p>
-  <b>Content type:</b>
-  <%=h @artwork.content_type %>
-</p>
-
-
-<p>
-  <b>Name:</b>
+<div class="artwork title">
   <%=h @artwork.name %>
+</div>
+</p>
+
+<%= image_tag @artwork.pictures[0].image.url %>
+
+<p>
+  <%=h @artwork.description %>
 </p>
 
 <p>
-  <b>Type:</b>
+  <%=h @artwork.year %>
+</p>
+
+<p>
+  <b>Medium:</b>
   <%=h @artwork.type %>
 </p>
 
 <p>
-  <b>Edition_number:</b>
+  <b>Edition:</b>
   <%=h @artwork.edition_number %>
 </p>
 
 <p>
-  <b>Physical_width:</b>
-  <%=h @artwork.physical_width %>
-</p>
-
-<p>
-  <b>Physical_height:</b>
-  <%=h @artwork.physical_height %>
-</p>
-
-<p>
-  <b>Physical_depth:</b>
-  <%=h @artwork.physical_depth %>
+  <b>Size:</b>
+  <%=h @artwork.physical_width %> 
+  x <%=h @artwork.physical_height %>
+  x <%=h @artwork.physical_depth %>
+   inches
 </p>
 
 <p>
@@ -65,7 +44,10 @@
   <%=h @artwork.price %>
 </p>
 
-logo artist title share year medium copyright
+<p>Share</p>
 
+<% if current_user?(@artwork.user) %>
 <%= link_to 'Edit', edit_artwork_path(@artwork) %> |
+<% end %>
+
 <%= link_to 'Back', artworks_path %>

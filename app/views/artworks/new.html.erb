@@ -1,70 +1,34 @@
 <h1>New artwork</h1>
 
-this page is not working 
-
 <%= error_messages_for :artwork %>
 
-<% form_for(:picture, :url => pictures_path, 
-                      :html => { :multipart => true }) do |f| -%>
-  <p>
-    <label for="artwork">Upload a picture of the artwork:</label>
-    <%= f.file_field :uploaded_data %>
-  </p>
-<% end -%>
+<% form_for(@artwork) do |f| %>
+  <%= f.error_messages %>
 
-###
-<% unless @artwork_feed_items.empty? %>
-  <table class="artworks">
-    <%= render :partial => 'artwork_feed_item', :collection => @artwork_feed_items %>
-  </table>
-  <%= will_paginate @artwork_feed_items %>
-<% end %>
-###
-
-###<tr>
-  <td class="avatar">
-    <%= link_to artwork_feed_item.user.avatar.url(:thumb), artwork_feed_item.user %>
-  </td>
-  <td class="artwork">
-    <span class="user">
-      <%= link_to h(artwork_feed_item.user.name), artwork_feed_item.user %>
-    </span>
-    <span class="content">
-      <%= image_tag(artwork_feed_item.public_filename) %>
-    <span>
-    <span class="timestamp">
-      Posted <%= time_ago_in_words(artwork_feed_item.created_at) %> ago.
-    </span>
-  </td>
-  <% if current_user?(artwork_feed_item.user) %>
-  <td>
-    <%= link_to "delete", artwork_feed_item, :method => :delete,
-                                     :confirm => "You sure?" %>
-  </td>
+  <% fields_for :picture, @picture, :url => pictures_path, 
+    :html => { :multipart => true }  do |g| -%>
+    <p>
+      <label for="the picture">Upload a picture of the artwork:</label>
+      <%= g.file_field :image %>
+    </p>
   <% end %>
-</tr>
-###
-
-<!--
-
-<% form_for(@artwork) do |f| %>
-  <%= f.error_messages %>
 
   <p>
-    <%= f.label :owner_id %><br />
-    <%= f.text_field :owner_id %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
   </p>
   <p>
-    <%= f.label :filename %><br />
-    <%= f.text_field :filename %>
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
   </p>
   <p>
-    <%= f.label :thumbail %><br />
-    <%= f.text_field :thumbail %>
-  </p>
-  <p>
-    <%= f.label :size %><br />
-    <%= f.text_field :size %>
+    <%= f.label :medium %><br />
+    <%= f.text_field :medium %>
   </p>
   <p>
     <%= f.label :height %><br />
@@ -75,8 +39,16 @@ this page is not working
     <%= f.text_field :width %>
   </p>
   <p>
-    <%= f.label :content_type %><br />
-    <%= f.text_field :content_type %>
+    <%= f.label :physical_depth %><br />
+    <%= f.text_field :physical_depth %>
+  </p>
+  <p>
+    <%= f.label :edition_number %><br />
+    <%= f.text_field :edition_number %>
+  </p>
+  <p>
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
   </p>
   <p>
     <%= f.submit 'Create' %>
@@ -85,47 +57,3 @@ this page is not working
 
 <%= link_to 'Back', artworks_path %>
 
--->
-
-
-<!--
-
-<% form_for(@artwork) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :owner_id %><br />
-    <%= f.text_field :owner_id %>
-  </p>
-  <p>
-    <%= f.label :filename %><br />
-    <%= f.text_field :filename %>
-  </p>
-  <p>
-    <%= f.label :thumbail %><br />
-    <%= f.text_field :thumbail %>
-  </p>
-  <p>
-    <%= f.label :size %><br />
-    <%= f.text_field :size %>
-  </p>
-  <p>
-    <%= f.label :height %><br />
-    <%= f.text_field :height %>
-  </p>
-  <p>
-    <%= f.label :width %><br />
-    <%= f.text_field :width %>
-  </p>
-  <p>
-    <%= f.label :content_type %><br />
-    <%= f.text_field :content_type %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', artworks_path %>
-
---!>

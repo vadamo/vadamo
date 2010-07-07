@@ -19,17 +19,19 @@
 
 class Picture < ActiveRecord::Base
 
+  attr_accessible :image
+
   belongs_to :artwork
 
   has_attached_file :image, 
                     :styles => { :medium => "300x300>", :thumb => "100x100>" },
-                    :storage => :s3, 
-                    :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+ #                   :storage => :s3, 
+ #                   :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
                     :path => ":class/:id/:style.:extension"
 
-#  validates_as_attachment
+  validates_attachment_presence :image
 #  validates_presence_of :picture_id
 
-  default_scope :order => 'created_at DESC'
+#  default_scope :order => 'created_at DESC'
 
 end

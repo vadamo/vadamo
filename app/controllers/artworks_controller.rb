@@ -4,12 +4,23 @@ class ArtworksController < ApplicationController
 
   def create
     @artwork = current_user.artworks.build(params[:artwork])
-    if @artwork.save
-      flash[:success] = 'Artwork created!'
-      redirect_to root_path
-    else
+    awstatus = @artwork.save
+    @picture = @artwork.pictures.build(params[:picture])
+    pcstatus = @picture.save
+    # @picture = @artwork.pictures.build(params[:picture])
+    if (!awstatus)
+      flash[:failure] = 'Artwork creation failed'
       @artwork_feed_items = []
       render 'pages/home'
+    end
+    
+    if (!pcstatus)
+      flash[:failure] = 'Picture creation failed'
+      @artwork_feed_items = []
+      render 'pages/home'
+    else
+      flash[:success] = 'Artwork created!'
+      redirect_to root_path
     end
   end
 
@@ -29,12 +40,18 @@ class ArtworksController < ApplicationController
 
   def index
     @title = "All artwork"
-#    @artworks = Artwork.pginate(:page => params[:page])
+#    @artworks = Artwork.paginate(:page => params[:page])
   end
 
   def edit
     @artwork = Artwork.find(params[:id])
   end  
+
+  def new
+    @artwork = Artwork.new
+    @picture = Picture.new
+    @title = "Create New Artwork"
+  end
 
   def update
     @artwork = Artwork.find(params[:id])

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100606181506) do
+ActiveRecord::Schema.define(:version => 20100706223154) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20100606181506) do
     t.string   "ships_to"
     t.integer  "shipping_cost",      :limit => 2
     t.string   "name"
+    t.integer  "year"
+    t.string   "medium"
   end
 
   add_index "artworks", ["user_id"], :name => "index_artworks_on_user_id"
