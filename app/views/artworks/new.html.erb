@@ -1,59 +1,6 @@
 <h1>New artwork</h1>
-
-<%= error_messages_for :artwork %>
-
-<% form_for(@artwork) do |f| %>
-  <%= f.error_messages %>
-
-  <% fields_for :picture, @picture, :url => pictures_path, 
-    :html => { :multipart => true }  do |g| -%>
-    <p>
-      <label for="the picture">Upload a picture of the artwork:</label>
-      <%= g.file_field :image %>
-    </p>
-  <% end %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :year %><br />
-    <%= f.text_field :year %>
-  </p>
-  <p>
-    <%= f.label :medium %><br />
-    <%= f.text_field :medium %>
-  </p>
-  <p>
-    <%= f.label :height %><br />
-    <%= f.text_field :height %>
-  </p>
-  <p>
-    <%= f.label :width %><br />
-    <%= f.text_field :width %>
-  </p>
-  <p>
-    <%= f.label :physical_depth %><br />
-    <%= f.text_field :physical_depth %>
-  </p>
-  <p>
-    <%= f.label :edition_number %><br />
-    <%= f.text_field :edition_number %>
-  </p>
-  <p>
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+<%= javascript_include_tag 'prototype' %>
+<%= render :partial => 'form' %>
 
 <%= link_to 'Back', artworks_path %>
 

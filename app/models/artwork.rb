@@ -46,8 +46,35 @@ class Artwork < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
 
   validates_presence_of :user_id
+  validates_associated  :pictures
 
   default_scope :order => 'created_at DESC'
+
+  def new_picture_attributes=(picture_attributes)
+    picture_attributes.each do |attributes|
+      pictures.build(attributes)
+    end
+  end
+
+  after_update :save_pictures
+
+  def existing_picture_attributes=(picture_attributes)
+    pictures.reject(&:new_record?).each do |picture|
+      attributes = picture_attributes[picture.id.to_s]
+      if attributes
+        picture.attributes = attributes
+      else
+        pictures.delete(picture)
+      end
+    end
+  end
+
+  def save_pictures
+    pictures.each do |picture|
+      picture.save(false)
+    end
+  end
+
 end
 
 

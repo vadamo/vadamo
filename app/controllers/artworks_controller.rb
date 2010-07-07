@@ -5,19 +5,19 @@ class ArtworksController < ApplicationController
   def create
     @artwork = current_user.artworks.build(params[:artwork])
     awstatus = @artwork.save
-    @picture = @artwork.pictures.build(params[:picture])
-    pcstatus = @picture.save
+    # @artwork.picture = @artwork.pictures.build(params[:picture])
+    # pcstatus = @picture.save
     # @picture = @artwork.pictures.build(params[:picture])
     if (!awstatus)
       flash[:failure] = 'Artwork creation failed'
       @artwork_feed_items = []
       render 'pages/home'
-    end
+#     end
     
-    if (!pcstatus)
-      flash[:failure] = 'Picture creation failed'
-      @artwork_feed_items = []
-      render 'pages/home'
+#     if (!pcstatus)
+#       flash[:failure] = 'Picture creation failed'
+#       @artwork_feed_items = []
+#       render 'pages/home'
     else
       flash[:success] = 'Artwork created!'
       redirect_to root_path
@@ -49,15 +49,17 @@ class ArtworksController < ApplicationController
 
   def new
     @artwork = Artwork.new
-    @picture = Picture.new
+    @artwork.pictures.build
     @title = "Create New Artwork"
   end
 
   def update
+    params[:artwork][:existing_picture_attributes] ||= {}
+
     @artwork = Artwork.find(params[:id])
     if @artwork.update_attributes(params[:artwork])
       flash[:success] = "Artwork updated."
-      redirect_to @artwork
+      redirect_to artwork_path(@artwork)
     else
       @title = "Edit artwork"
       render 'edit'

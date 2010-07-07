@@ -26,8 +26,11 @@
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>
-
-    <!-- Google analytics -->
+    
+<!-- javascripts -->
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'prototype' %>
+<!-- Google analytics -->
     <script type="text/javascript">
       
       var _gaq = _gaq || [];
@@ -41,6 +44,6 @@
       })();
       
     </script>
-    <!-- end Google analytics -->
+<!-- end Google analytics -->
   </body>
 </html>

@@ -1,0 +1,10 @@
+<div class="picture">
+  <% new_or_existing = picture.new_record? ? 'new' : 'existing' %>
+  <% prefix = "project[#{new_or_existing}_picture_attributes][]" %>
+  <% fields_for prefix, picture do |picture_form| -%>
+  <p>
+    Picture: <%= picture_form.text_field :name %>
+    <%= link_to_function "remove" , "$(this).up('.picture').remove()" %>
+  </p>
+  <% end -%>
+</div>
