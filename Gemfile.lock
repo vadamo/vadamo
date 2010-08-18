@@ -1,305 +1,153 @@
---- 
-dependencies: 
-  faker: 
-    group: 
-    - :default
-    version: ">= 0"
-  activeresource: 
-    group: 
-    - :default
-    version: ">= 0"
-  ruby-debug: 
-    group: 
-    - :default
-    version: ">= 0"
-  sys-uname: 
-    group: 
-    - :default
-    version: ">= 0"
-  ZenTest: 
-    group: 
-    - :default
-    version: ">= 0"
-  termios: 
-    group: 
-    - :default
-    version: ">= 0"
-  ruby-yadis: 
-    group: 
-    - :default
-    version: ">= 0"
-  mongrel: 
-    group: 
-    - :default
-    version: ">= 0"
-  fastthread: 
-    group: 
-    - :default
-    version: ">= 0"
-  activerecord: 
-    group: 
-    - :default
-    version: ">= 0"
-  rails: 
-    group: 
-    - :default
-    version: = 2.3.8
-  columnize: 
-    group: 
-    - :default
-    version: ">= 0"
-  libxml-ruby: 
-    group: 
-    - :default
-    version: ">= 0"
-  xmpp4r: 
-    group: 
-    - :default
-    version: ">= 0"
-  sqlite3-ruby: 
-    group: 
-    - :default
-    version: ">= 0"
-  rake: 
-    group: 
-    - :default
-    version: ">= 0"
-  highline: 
-    group: 
-    - :default
-    version: ">= 0"
-  ruby-openid: 
-    group: 
-    - :default
-    version: ">= 0"
-  rubygems-update: 
-    group: 
-    - :default
-    version: ">= 0"
-  actionwebservice: 
-    group: 
-    - :default
-    version: ">= 0"
-  mime-types: 
-    group: 
-    - :default
-    version: ">= 0"
-  gem_plugin: 
-    group: 
-    - :default
-    version: ">= 0"
-  cgi_multipart_eof_fix: 
-    group: 
-    - :default
-    version: ">= 0"
-  ferret: 
-    group: 
-    - :default
-    version: ">= 0"
-  rack: 
-    group: 
-    - :default
-    version: = 1.1.0
-  rest-client: 
-    group: 
-    - :default
-    version: ">= 0"
-  json: 
-    group: 
-    - :default
-    version: ">= 0"
-  will_paginate: 
-    group: 
-    - :default
-    version: = 2.3.12
-  heroku: 
-    group: 
-    - :default
-    version: ">= 0"
-  webrat: 
-    group: 
-    - :default
-    version: ">= 0"
-  linecache: 
-    group: 
-    - :default
-    version: ">= 0"
-  actionpack: 
-    group: 
-    - :default
-    version: = 2.3.8
-  actionmailer: 
-    group: 
-    - :default
-    version: = 2.3.8
-  daemons: 
-    group: 
-    - :default
-    version: ">= 0"
-  json_pure: 
-    group: 
-    - :default
-    version: ">= 0"
-  needle: 
-    group: 
-    - :default
-    version: ">= 0"
-  configuration: 
-    group: 
-    - :default
-    version: ">= 0"
-  builder: 
-    group: 
-    - :default
-    version: ">= 0"
-  activesupport: 
-    group: 
-    - :default
-    version: ">= 0"
-  aws-s3: 
-    group: 
-    - :default
-    version: ">= 0"
-  acts_as_ferret: 
-    group: 
-    - :default
-    version: ">= 0"
-  hpricot: 
-    group: 
-    - :default
-    version: ">= 0"
-  RedCloth: 
-    group: 
-    - :default
-    version: ">= 0"
-  xml-simple: 
-    group: 
-    - :default
-    version: ">= 0"
-  ruby-debug-base: 
-    group: 
-    - :default
-    version: ">= 0"
-  nokogiri: 
-    group: 
-    - :default
-    version: ">= 0"
-  launchy: 
-    group: 
-    - :default
-    version: ">= 0"
-  capistrano: 
-    group: 
-    - :default
-    version: ">= 0"
-specs: 
-- rake: 
-    version: 0.8.7
-- RedCloth: 
-    version: 4.2.3
-- ZenTest: 
-    version: 4.3.3
-- activesupport: 
-    version: 2.3.8
-- rack: 
-    version: 1.1.0
-- actionpack: 
-    version: 2.3.8
-- actionmailer: 
-    version: 2.3.8
-- activerecord: 
-    version: 2.3.8
-- actionwebservice: 
-    version: 0.6.0
-- activeresource: 
-    version: 2.3.8
-- ferret: 
-    version: 0.11.6
-- acts_as_ferret: 
-    version: 0.4.7
-- builder: 
-    version: 2.1.2
-- mime-types: 
-    version: "1.16"
-- xml-simple: 
-    version: 1.0.12
-- aws-s3: 
-    version: 0.6.2
-- highline: 
-    version: 1.5.2
-- net-ssh: 
-    version: 2.0.23
-- net-scp: 
-    version: 1.0.2
-- net-sftp: 
-    version: 2.0.4
-- net-ssh-gateway: 
-    version: 1.0.1
-- capistrano: 
-    version: 2.5.19
-- cgi_multipart_eof_fix: 
-    version: 2.5.0
-- columnize: 
-    version: 0.3.1
-- configuration: 
-    version: 1.1.0
-- daemons: 
-    version: 1.1.0
-- faker: 
-    version: 0.3.1
-- fastthread: 
-    version: 1.0.7
-- gem_plugin: 
-    version: 0.2.3
-- json_pure: 
-    version: 1.4.3
-- launchy: 
-    version: 0.3.5
-- rest-client: 
-    version: 1.4.2
-- heroku: 
-    version: 1.9.11
-- hpricot: 
-    version: 0.8.2
-- json: 
-    version: 1.4.3
-- libxml-ruby: 
-    version: 1.1.4
-- linecache: 
-    version: "0.43"
-- mongrel: 
-    version: 1.1.5
-- needle: 
-    version: 1.3.0
-- nokogiri: 
-    version: 1.4.2
-- rack-test: 
-    version: 0.5.4
-- rails: 
-    version: 2.3.8
-- ruby-debug-base: 
-    version: 0.10.3
-- ruby-debug: 
-    version: 0.10.3
-- ruby-openid: 
-    version: 2.1.7
-- ruby-yadis: 
-    version: 0.3.4
-- rubygems-update: 
-    version: 1.3.7
-- sqlite3-ruby: 
-    version: 1.3.0
-- sys-uname: 
-    version: 0.8.4
-- termios: 
-    version: 0.9.4
-- webrat: 
-    version: 0.7.1
-- will_paginate: 
-    version: 2.3.12
-- xmpp4r: 
-    version: "0.5"
-hash: c9bada78c6bf5cdbf2895170b075bf672aad815d
-sources: 
-- Rubygems: 
-    uri: http://gemcutter.org
+GEM
+  remote: http://rubygems.org/
+  specs:
+    RedCloth (4.2.3)
+    ZenTest (4.3.3)
+    actionmailer (2.3.8)
+      actionpack (= 2.3.8)
+    actionpack (2.3.8)
+      activesupport (= 2.3.8)
+      rack (~> 1.1.0)
+    actionwebservice (0.6.0)
+      actionpack (>= 1.5.1)
+      activerecord (>= 1.8.0)
+      activesupport (>= 1.0.1)
+    activerecord (2.3.8)
+      activesupport (= 2.3.8)
+    activeresource (2.3.8)
+      activesupport (= 2.3.8)
+    activesupport (2.3.8)
+    acts_as_ferret (0.4.8)
+      ferret
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
+    builder (2.1.2)
+    capistrano (2.5.19)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.0.0)
+    cgi_multipart_eof_fix (2.5.0)
+    columnize (0.3.1)
+    configuration (1.1.0)
+    daemons (1.1.0)
+    faker (0.3.1)
+    fastthread (1.0.7)
+    ferret (0.11.6)
+      rake (> 0.0.0)
+    gem_plugin (0.2.3)
+    heroku (1.6.3)
+      json (>= 1.1.0)
+      launchy (>= 0.3.2)
+      rest-client (>= 1.2.0, < 2.0.0)
+    highline (1.6.1)
+    hpricot (0.8.2)
+    json (1.4.6)
+    json_pure (1.4.6)
+    launchy (0.3.7)
+      configuration (>= 0.0.5)
+      rake (>= 0.8.1)
+    libxml-ruby (1.1.4)
+    linecache (0.43)
+    mime-types (1.16)
+    mongrel (1.1.5)
+      cgi_multipart_eof_fix (>= 2.4)
+      daemons (>= 1.0.3)
+      fastthread (>= 1.0.1)
+      gem_plugin (>= 0.2.3)
+    needle (1.3.0)
+    net-scp (1.0.3)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.4)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.0.23)
+    net-ssh-gateway (1.0.1)
+      net-ssh (>= 1.99.1)
+    nokogiri (1.4.3.1)
+    rack (1.1.0)
+    rack-test (0.5.4)
+      rack (>= 1.0)
+    rails (2.3.8)
+      actionmailer (= 2.3.8)
+      actionpack (= 2.3.8)
+      activerecord (= 2.3.8)
+      activeresource (= 2.3.8)
+      activesupport (= 2.3.8)
+      rake (>= 0.8.3)
+    rake (0.8.7)
+    rest-client (1.6.0)
+      mime-types (>= 1.16)
+    ruby-debug (0.10.3)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.3.0)
+    ruby-debug-base (0.10.3)
+      linecache (>= 0.3)
+    ruby-openid (2.1.8)
+    ruby-yadis (0.3.4)
+    rubygems-update (1.3.7)
+    sqlite3-ruby (1.3.1)
+    sys-uname (0.8.4)
+    termios (0.9.4)
+    webrat (0.7.1)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
+    will_paginate (2.3.12)
+    xml-simple (1.0.12)
+    xmpp4r (0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  RedCloth
+  ZenTest
+  actionmailer (= 2.3.8)
+  actionpack (= 2.3.8)
+  actionwebservice
+  activerecord
+  activeresource
+  activesupport
+  acts_as_ferret
+  aws-s3
+  builder
+  capistrano
+  cgi_multipart_eof_fix
+  columnize
+  configuration
+  daemons
+  faker
+  fastthread
+  ferret
+  gem_plugin
+  heroku
+  highline
+  hpricot
+  json
+  json_pure
+  launchy
+  libxml-ruby
+  linecache
+  mime-types
+  mongrel
+  needle
+  nokogiri
+  rack (= 1.1.0)
+  rails (= 2.3.8)
+  rake
+  rest-client
+  ruby-debug
+  ruby-debug-base
+  ruby-openid
+  ruby-yadis
+  rubygems-update
+  sqlite3-ruby
+  sys-uname
+  termios
+  webrat
+  will_paginate (= 2.3.12)
+  xml-simple
+  xmpp4r

@@ -1,0 +1,55 @@
+<h1>Sitemap</h1>
+<p>
+link_to About
+    <li><%= link_to "Help", help_path %></li>
+News and press
+Partner
+Advertising
+Team
+Register
+Upgrade
+Terms of service
+Privacy policy
+Copyright and IP Policy
+Login
+Recently added
+Search
+Top categories
+Help
+Link to Vadamo
+Contact Vadamo
+</p>
+
+<div id="sitemap" class="round">
+  <ul class="navigation round">
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Users", users_path %></li>
+    <li><%= link_to "Profile", current_user %></li>
+    <li><%= link_to "Settings", edit_user_path(current_user) %></li> 
+    <% end %>
+    <li><%= link_to "Help", help_path %></li>
+    <li><%= link_to "About", about_path %></li>
+    <li><%= link_to "News and Press", news_and_press_path %></li>
+    <li><%= link_to "Partner with Vadamo", partner_path %></li>
+    <li><%= link_to "Advertising", advertising_path %></li>
+    <li><%= link_to "Team", team_path %></li>
+    <li><%= link_to "Register", signup_url %></li>
+    <li><%= link_to "Upgrade", upgrade_path %></li>
+    <li><%= link_to "Terms of Service", tos_path %></li>
+    <li><%= link_to "Privacy Policy", privacy_policy_path %></li>
+    <li><%= link_to "Copyright and IP Policy", copyright_and_ip_policy_path %></li>
+    <li><%= link_to "Recently Added", recently_added_path %></li>
+    <li><%= link_to "Search", search_path %></li>
+    <% if signed_in? %>
+    <li><%= link_to "Sign out", signout_path %></li>
+    <% else %>
+    <li><%= link_to "Sign in", signin_path %></li>
+    <% end %>
+    <li><%= link_to "Top Categories", top_categories_path %></li>
+    <li><%= link_to "Help", help_path %></li>
+    <li><%= link_to "Link to Vadamo", link_to_vadamo_path %></li>
+    <li><%= link_to "Contact Vadamo", contact_path %></li>
+  </ul>
+</div>
+
+Categories
