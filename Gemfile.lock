@@ -19,6 +19,8 @@ GEM
     activesupport (2.3.8)
     acts_as_ferret (0.4.8)
       ferret
+    authlogic (2.1.6)
+      activesupport
     aws-s3 (0.6.2)
       builder
       mime-types
@@ -34,6 +36,8 @@ GEM
     columnize (0.3.1)
     configuration (1.1.0)
     daemons (1.1.0)
+    facebooker (1.0.75)
+      json_pure (>= 1.0.0)
     faker (0.3.1)
     fastthread (1.0.7)
     ferret (0.11.6)
@@ -112,6 +116,7 @@ DEPENDENCIES
   activeresource
   activesupport
   acts_as_ferret
+  authlogic
   aws-s3
   builder
   capistrano
@@ -119,6 +124,7 @@ DEPENDENCIES
   columnize
   configuration
   daemons
+  facebooker
   faker
   fastthread
   ferret

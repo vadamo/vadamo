@@ -1,5 +1,7 @@
 source :gemcutter
 gem 'rails', '2.3.8'
+gem 'authlogic'
+gem 'facebooker'
 gem 'will_paginate', '2.3.12'
 gem 'faker'
 gem 'aws-s3'
