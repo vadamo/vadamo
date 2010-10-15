@@ -1,6 +1,0 @@
-<% unless !@artwork_feed_items || @artwork_feed_items.empty? %>
-  <table class="artworks">
-    <%= render :partial => 'artwork_feed_item', :collection => @artwork_feed_items %>
-  </table>
-  <%= will_paginate @artwork_feed_items %>
-<% end %>

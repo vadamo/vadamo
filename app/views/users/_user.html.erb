@@ -1,8 +1,0 @@
-<li>
-  <%= image_tag avatar.url(:thumb) %>
-  <%= link_to h(user.name), user %>
-  <% if current_user.admin? %>
-  | <%= link_to "delete", user, :method => :delete, :confirm => "You sure?" %>
-  <% end %>
-</li>
-
