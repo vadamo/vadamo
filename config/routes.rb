@@ -1,4 +1,6 @@
 Vadamo::Application.routes.draw do
+  resources :mailinglistusers, :only => [:new, :create]
+
   resources :users do
     member do
       get :following, :followers

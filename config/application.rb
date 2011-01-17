@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+#10-17-2010 - added this so that mail interceptor is loaded from lib
+Dir.glob("./lib/*.{rb}").each { |file| require file }
+
 module Vadamo
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

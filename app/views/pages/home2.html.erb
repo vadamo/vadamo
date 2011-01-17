@@ -1,0 +1,34 @@
+<% if signed_in? %>
+  <table class="front" summary="For signed-in users">
+    <tr>
+      <td class="main">
+        <h1 class="micropost">What's up?</h1>
+        <%= render 'shared/micropost_form' %>
+        <%= render 'shared/feed' %>
+      </td>
+      <td class="sidebar round">
+        <%= render 'shared/user_info' %>
+	<%= render 'shared/stats' %>
+      </td>
+    </tr>
+  </table>
+<% else %>
+  <h1>Vadamo</h1>
+
+  <p>
+    Welcome to Vadamo.com. Please sign up to be notified when the site is available. 
+  </p>
+
+
+<%= form_for(:mailinglistuser, :url => "www.vadamo.com") do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+
+  <!-- link_to "Sign up now!", signup_path, :class => "signup_button round" -->
+<% end %>

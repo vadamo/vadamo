@@ -1,4 +1,4 @@
-<% if signed_in? %>
+<% if false && signed_in? %>
   <table class="front" summary="For signed-in users">
     <tr>
       <td class="main">
@@ -13,13 +13,126 @@
     </tr>
   </table>
 <% else %>
-  <h1>Sample App</h1>
 
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Vadamo.com | Your online, social connection to the art world.</title>
+
+<%= csrf_meta_tag %>
+
+<% if false %>
+<!-- f2bdc4 is the background color -->
+<!-- need one of them flag.ico things -->
+<!-- link href="http://www.vadamo.com/flag.ico" rel="icon" -->
+<%=  render 'layouts/stylesheets' %>
+<%= javascript_include_tag :defaults %>
+<% end %>
+
+<%= stylesheet_link_tag "test" %>
+
+
+<meta content="Vadamo is your online, social connection to the art world." name="description">
+
+</head>
+
+<body>
+	<div class="sc_grad"></div>
+	<table class="layout">
+		<tbody>
+			<tr>
+				<td align="center" class="layout">
+					<div id="container">
+						<div class="content_wrap">
+							<div id="content">
+								<div id="sw_content" style="height: 512px; ">
+									<% if false %>
+									<div class="sw_sform">
+										<div class="sw_logo">
+										<!-- Vadamo -->
+										</div>
+										<!-- saving for later-->
+										<!-- the form field -->
+										<div class="sw_mbrand"></div>
+										<div class="search_controls">
+											<form action="http://www.vadamo.com/notsureyet" class="sw_box" id="sb_form">
+												<div class="sw_bd">
+													<div class="sw_b">
+														<input class="sw_qbox" id="sb_form_q" name="q" title="Enter your search term" type="text" value="" autocomplete="off">
+														<!-- the orange box submit button thing -->
+														<input class="sw_qbtn" id="sb_form_go" name="go" tabindex="0" title="Search" type="submit" value="">
+													</div>
+													<div id="sw_as" style="display: block; ">
+														<div id="sa_as">
+														</div>
+													</div>
+												</div>
+												<input name="form" type="hidden" value="QBLH"><input name="qs" type="hidden" value="n">
+												<input name="sk" type="hidden">
+											</form>
+										</div>
+									</div>
+									<% end %>
+									<div id="bgDiv" style="height: 512px; "></div>								
+								</div>
+								<!-- gray bar below picture -->
+								<div class="sc_def"></div>
+								<div id="sw_pb">
+									<div class="vvv">
+										Vadamo
+									</div>
+									<h3>Under Construction</h3>Please enter your email address.
+								</div>
+								<%= form_for :mailinglistuser, @mailinglistuser, :url => { :controller => "mailinglistusers", :action => "create" } do |f| %>
+								  <div class="field">
+								    <%= f.text_field :email %>
+								  </div>	
+								  <div class="actions">
+								    <%= f.submit "Submit" %>
+								  </div>
+								<% end %>
+								
+							</div>
+							<!-- very bottom gray bar / footer -->
+							<div id="sb_foot">
+								<ul id="sw_footL">
+									<li>© 2010 Vadamo, Inc.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>	
+		</tbody>
+	</table>
+
+	<div style="display: none; "></div>
+
+    <%= debug(params) if Rails.env.development? %>
+
+
+</body>
+
+<% end %>
+
+<% if false %><!-- end landing page stuff  -->
+
+<!-- old shit -->
   <p>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
+    Welcome to Vadamo.com. Please sign up to be notified when the site is available. 
   </p>
 
-  <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+
+<%= form_for(:mailinglistuser, :url => "www.vadamo.com") do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
 <% end %>
+<!-- link_to "Sign up now!", signup_path, :class => "signup_button round" -->
+
+<% end %>
+

@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- is that doctype correct? how about the html tag -->
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<% if false %> <!--local_assigns.has_key? :shutoff && :shutoff --> 
+
   <head>
     <title><%= title %></title>
     <%= csrf_meta_tag %>
@@ -19,5 +23,11 @@
       <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
-</html>
 
+<% else %>
+
+<%= yield %>
+
+<% end %>
+
+</html>
